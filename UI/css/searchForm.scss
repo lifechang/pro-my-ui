@@ -1,0 +1,11 @@
+.el-form-item {
+  display: flex;
+
+  > :nth-child(2) {
+    flex: 1;
+
+    .el-select {
+      width: 100%;
+    }
+  }
+}

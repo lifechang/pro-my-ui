@@ -1,0 +1,8 @@
+.eslintrc.js
+.babelrc
+vue.config.js
+webpack.config.js
+
+dist/*.js
+node_modules/*.js
+public/*.js
