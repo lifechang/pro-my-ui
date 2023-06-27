@@ -30,25 +30,8 @@ export const siteData = {
       },
       "regularPath": "/",
       "relativePath": "README.md",
-      "key": "v-1b72fe22",
+      "key": "v-1ac5d586",
       "path": "/"
-    },
-    {
-      "title": "快速上手",
-      "frontmatter": {
-        "title": "快速上手"
-      },
-      "regularPath": "/component/quickstart/quickstart.html",
-      "relativePath": "component/quickstart/quickstart.md",
-      "key": "v-4b8f0e8e",
-      "path": "/component/quickstart/quickstart.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "引入pro-my-ui",
-          "slug": "引入pro-my-ui"
-        }
-      ]
     },
     {
       "title": "安装",
@@ -57,7 +40,7 @@ export const siteData = {
       },
       "regularPath": "/component/installation/installation.html",
       "relativePath": "component/installation/installation.md",
-      "key": "v-4b243279",
+      "key": "v-52daa784",
       "path": "/component/installation/installation.html",
       "headers": [
         {
@@ -68,13 +51,30 @@ export const siteData = {
       ]
     },
     {
+      "title": "快速上手",
+      "frontmatter": {
+        "title": "快速上手"
+      },
+      "regularPath": "/component/quickstart/quickstart.html",
+      "relativePath": "component/quickstart/quickstart.md",
+      "key": "v-1c28f104",
+      "path": "/component/quickstart/quickstart.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "引入pro-my-ui",
+          "slug": "引入pro-my-ui"
+        }
+      ]
+    },
+    {
       "title": "MyTable表格",
       "frontmatter": {
         "title": "MyTable表格"
       },
       "regularPath": "/component/test/test.html",
       "relativePath": "component/test/test.md",
-      "key": "v-3014bb79",
+      "key": "v-1af3893e",
       "path": "/component/test/test.html",
       "headers": [
         {
@@ -91,7 +91,7 @@ export const siteData = {
       },
       "regularPath": "/component/table/table.html",
       "relativePath": "component/table/table.md",
-      "key": "v-1330e002",
+      "key": "v-d4201978",
       "path": "/component/table/table.html",
       "headers": [
         {

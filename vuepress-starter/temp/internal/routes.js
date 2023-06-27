@@ -4,16 +4,16 @@
 
 import { injectComponentOption, ensureAsyncComponentsLoaded } from '@app/util'
 import rootMixins from '@internal/root-mixins'
-import GlobalLayout from "D:\\text\\my-ui\\vuepress-starter\\node_modules\\@vuepress\\core\\lib\\client\\components\\GlobalLayout.vue"
+import GlobalLayout from "D:\\test\\pro-my-ui\\vuepress-starter\\node_modules\\@vuepress\\core\\lib\\client\\components\\GlobalLayout.vue"
 
 injectComponentOption(GlobalLayout, 'mixins', rootMixins)
 export const routes = [
   {
-    name: "v-1b72fe22",
+    name: "v-1ac5d586",
     path: "/",
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-1b72fe22").then(next)
+      ensureAsyncComponentsLoaded("Layout", "v-1ac5d586").then(next)
     },
   },
   {
@@ -21,35 +21,35 @@ export const routes = [
     redirect: "/"
   },
   {
-    name: "v-4b8f0e8e",
-    path: "/component/quickstart/quickstart.html",
-    component: GlobalLayout,
-    beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-4b8f0e8e").then(next)
-    },
-  },
-  {
-    name: "v-4b243279",
+    name: "v-52daa784",
     path: "/component/installation/installation.html",
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-4b243279").then(next)
+      ensureAsyncComponentsLoaded("Layout", "v-52daa784").then(next)
     },
   },
   {
-    name: "v-3014bb79",
+    name: "v-1c28f104",
+    path: "/component/quickstart/quickstart.html",
+    component: GlobalLayout,
+    beforeEnter: (to, from, next) => {
+      ensureAsyncComponentsLoaded("Layout", "v-1c28f104").then(next)
+    },
+  },
+  {
+    name: "v-1af3893e",
     path: "/component/test/test.html",
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-3014bb79").then(next)
+      ensureAsyncComponentsLoaded("Layout", "v-1af3893e").then(next)
     },
   },
   {
-    name: "v-1330e002",
+    name: "v-d4201978",
     path: "/component/table/table.html",
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-1330e002").then(next)
+      ensureAsyncComponentsLoaded("Layout", "v-d4201978").then(next)
     },
   },
   {
