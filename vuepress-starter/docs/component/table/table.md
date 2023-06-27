@@ -4,7 +4,7 @@ title: MyTable表格
 
 # MyTable 表格
 
-## 基本用法
+## 基本用法 2
 
 适用广泛的基础单选 1
 
