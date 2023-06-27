@@ -1,6 +1,6 @@
 <template>
   <div class="bg">
-    <el-button type="">11212</el-button>
+    <el-button type="">999</el-button>
   </div>
 </template>
 
