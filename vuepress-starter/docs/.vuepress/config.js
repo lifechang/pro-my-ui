@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   title: "pro-my-ui",
   description: "网站描述",
-  // base: "/<REPO>/",
+  base: "/pro-my-ui/",
   // 注入到当前页面的 HTML <head> 中的标签
   head: [
     // 增加一个自定义的 favicon(网页标签的图标)

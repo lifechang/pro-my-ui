@@ -51,6 +51,23 @@ export const siteData = {
       ]
     },
     {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/table/table.html",
+      "relativePath": "component/table/table.md",
+      "key": "v-d4201978",
+      "path": "/component/table/table.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        }
+      ]
+    },
+    {
       "title": "快速上手",
       "frontmatter": {
         "title": "快速上手"
@@ -76,23 +93,6 @@ export const siteData = {
       "relativePath": "component/test/test.md",
       "key": "v-1af3893e",
       "path": "/component/test/test.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        }
-      ]
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/table/table.html",
-      "relativePath": "component/table/table.md",
-      "key": "v-d4201978",
-      "path": "/component/table/table.html",
       "headers": [
         {
           "level": 2,
