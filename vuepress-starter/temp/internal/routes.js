@@ -9,27 +9,11 @@ import GlobalLayout from "D:\\test\\pro-my-ui\\vuepress-starter\\node_modules\\@
 injectComponentOption(GlobalLayout, 'mixins', rootMixins)
 export const routes = [
   {
-    name: "v-52daa784",
-    path: "/component/installation/installation.html",
-    component: GlobalLayout,
-    beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-52daa784").then(next)
-    },
-  },
-  {
     name: "v-d4201978",
     path: "/component/table/table.html",
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
       ensureAsyncComponentsLoaded("Layout", "v-d4201978").then(next)
-    },
-  },
-  {
-    name: "v-1af3893e",
-    path: "/component/test/test.html",
-    component: GlobalLayout,
-    beforeEnter: (to, from, next) => {
-      ensureAsyncComponentsLoaded("Layout", "v-1af3893e").then(next)
     },
   },
   {
@@ -50,6 +34,22 @@ export const routes = [
     component: GlobalLayout,
     beforeEnter: (to, from, next) => {
       ensureAsyncComponentsLoaded("Layout", "v-1c28f104").then(next)
+    },
+  },
+  {
+    name: "v-52daa784",
+    path: "/component/installation/installation.html",
+    component: GlobalLayout,
+    beforeEnter: (to, from, next) => {
+      ensureAsyncComponentsLoaded("Layout", "v-52daa784").then(next)
+    },
+  },
+  {
+    name: "v-1af3893e",
+    path: "/component/test/test.html",
+    component: GlobalLayout,
+    beforeEnter: (to, from, next) => {
+      ensureAsyncComponentsLoaded("Layout", "v-1af3893e").then(next)
     },
   },
   {

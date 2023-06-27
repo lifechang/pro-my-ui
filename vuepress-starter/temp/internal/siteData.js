@@ -16,23 +16,6 @@ export const siteData = {
   ],
   "pages": [
     {
-      "title": "安装",
-      "frontmatter": {
-        "title": "安装"
-      },
-      "regularPath": "/component/installation/installation.html",
-      "relativePath": "component/installation/installation.md",
-      "key": "v-52daa784",
-      "path": "/component/installation/installation.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "NPM安装",
-          "slug": "npm安装"
-        }
-      ]
-    },
-    {
       "title": "MyTable表格",
       "frontmatter": {
         "title": "MyTable表格"
@@ -41,23 +24,6 @@ export const siteData = {
       "relativePath": "component/table/table.md",
       "key": "v-d4201978",
       "path": "/component/table/table.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法 2",
-          "slug": "基本用法-2"
-        }
-      ]
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/test/test.html",
-      "relativePath": "component/test/test.md",
-      "key": "v-1af3893e",
-      "path": "/component/test/test.html",
       "headers": [
         {
           "level": 2,
@@ -98,6 +64,40 @@ export const siteData = {
           "level": 2,
           "title": "引入pro-my-ui",
           "slug": "引入pro-my-ui"
+        }
+      ]
+    },
+    {
+      "title": "安装",
+      "frontmatter": {
+        "title": "安装"
+      },
+      "regularPath": "/component/installation/installation.html",
+      "relativePath": "component/installation/installation.md",
+      "key": "v-52daa784",
+      "path": "/component/installation/installation.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "NPM安装",
+          "slug": "npm安装"
+        }
+      ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/test/test.html",
+      "relativePath": "component/test/test.md",
+      "key": "v-1af3893e",
+      "path": "/component/test/test.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
         }
       ]
     }

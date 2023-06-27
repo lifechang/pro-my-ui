@@ -4,11 +4,11 @@ title: MyTable表格
 
 # MyTable 表格
 
-## 基本用法 2
+## 基本用法
 
-适用广泛的基础单选 1
+适用广泛的基础单选
 
-::: demo 2
+::: demo 适用广泛的基础单选
 
 ```html
 <template>
@@ -160,7 +160,7 @@ title: MyTable表格
                 total: 35,
               },
             });
-          }, 0);
+          }, 1000);
         });
       },
     },
