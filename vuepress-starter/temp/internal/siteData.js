@@ -16,41 +16,6 @@ export const siteData = {
   ],
   "pages": [
     {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/table/table.html",
-      "relativePath": "component/table/table.md",
-      "key": "v-d4201978",
-      "path": "/component/table/table.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        }
-      ]
-    },
-    {
-      "frontmatter": {
-        "home": false,
-        "actionText": "开始使用",
-        "actionLink": "/pages/test/",
-        "features": [
-          {
-            "title": "heaven-UI",
-            "details": "一套基于 Vue.js 的高质量UI 组件库"
-          }
-        ],
-        "footer": "MIT Licensed | COPYRIGHT ©"
-      },
-      "regularPath": "/",
-      "relativePath": "README.md",
-      "key": "v-1ac5d586",
-      "path": "/"
-    },
-    {
       "title": "快速上手",
       "frontmatter": {
         "title": "快速上手"
@@ -85,6 +50,24 @@ export const siteData = {
       ]
     },
     {
+      "frontmatter": {
+        "home": false,
+        "actionText": "开始使用",
+        "actionLink": "/pages/test/",
+        "features": [
+          {
+            "title": "heaven-UI",
+            "details": "一套基于 Vue.js 的高质量UI 组件库"
+          }
+        ],
+        "footer": "MIT Licensed | COPYRIGHT ©"
+      },
+      "regularPath": "/",
+      "relativePath": "README.md",
+      "key": "v-1ac5d586",
+      "path": "/"
+    },
+    {
       "title": "MyTable表格",
       "frontmatter": {
         "title": "MyTable表格"
@@ -100,10 +83,57 @@ export const siteData = {
           "slug": "基本用法"
         }
       ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/table/table.html",
+      "relativePath": "component/table/table.md",
+      "key": "v-d4201978",
+      "path": "/component/table/table.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        },
+        {
+          "level": 3,
+          "title": "ProTable（属性）",
+          "slug": "protable-属性"
+        },
+        {
+          "level": 3,
+          "title": "Column 配置",
+          "slug": "column-配置"
+        },
+        {
+          "level": 3,
+          "title": "搜索项 配置（SearchProps）",
+          "slug": "搜索项-配置-searchprops"
+        },
+        {
+          "level": 3,
+          "title": "ProTable 方法",
+          "slug": "protable-方法"
+        },
+        {
+          "level": 3,
+          "title": "ProTable 插槽",
+          "slug": "protable-插槽"
+        }
+      ]
     }
   ],
   "themeConfig": {
-    "nav": [],
+    "nav": [
+      {
+        "text": "GitHub",
+        "link": "https://github.com/lifechang/pro-my-ui"
+      }
+    ],
     "sidebar": [
       {
         "title": "开发指南",

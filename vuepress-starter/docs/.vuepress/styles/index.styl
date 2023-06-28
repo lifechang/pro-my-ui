@@ -1,8 +1,8 @@
-.page .theme-default-content:not(.custom) {
+.page .theme-default-content:not(.custom), .page .page-nav {
   max-width: none;
 }
 
-.el-table   
+.el-table, .el-date-table
   table
     border-collapse unset
     margin unset
@@ -11,9 +11,34 @@
   tr
     border-top unset
     &:nth-child(2n)
-      background-color #f6f8fa
+      background-color #FFF
   th, td
     border unset
     padding unset
 
+.all-table2 table{
+    th:first-of-type {
+        width: 100px;
+    }
+    th:nth-of-type(2) {
+        width: 260px;
+    }
+    th:nth-of-type(3) {
+        width: 100px;
+    }
+    th:nth-of-type(4) {
+        width: 100px;
+    }
+    th:nth-of-type(5) {
+        width: 100px;
+    }
+}
 
+.all-table1 table{
+    th:first-of-type {
+        width: 100px;
+    }
+    th:nth-of-type(2) {
+        width: 560px;
+    }
+}
