@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <My-Table
-      :columns="columns"
-      :request-api="getTableList"
-      :init-param="initParam"
-    >
+    <My-Table :columns="columns" :request-api="getTableList" :init-param="initParam">
       <!-- 表格 header 按钮 -->
       <template #tableHeader>
         <el-button type="primary">新增用户</el-button>
@@ -77,7 +73,7 @@ export default {
             span: 2,
             props: {
               type: "datetimerange",
-              valueFormat: "YYYY-MM-DD HH:mm:ss",
+              valueFormat: "yyyy-MM-dd HH:mm:ss",
             },
             defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
           },
