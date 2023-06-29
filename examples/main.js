@@ -1,9 +1,24 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
 
-
-import { Button as aButton, Pagination, Input, Select, Option, Tooltip, Popover, Tabs, Table, TableColumn, DatePicker, Form, FormItem } from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import {
+  Button as aButton,
+  Pagination,
+  Input,
+  Select,
+  Option,
+  Tooltip,
+  Popover,
+  Tabs,
+  Table,
+  TableColumn,
+  DatePicker,
+  Form,
+  FormItem,
+  Row,
+  Col,
+} from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 Vue.use(aButton);
 Vue.use(Pagination);
 Vue.use(Input);
@@ -17,16 +32,19 @@ Vue.use(TableColumn);
 Vue.use(DatePicker);
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Row);
+Vue.use(Col);
 
+import "../UI/css/button.scss";
+import Button from "../UI/packages/button";
+import MyTable from "../UI/packages/MyTable";
+import MyForm from "../UI/packages/MyForm";
+Vue.use(Button);
+Vue.use(MyTable);
+Vue.use(MyForm);
 
-import '../UI/css/button.scss'
-import Button from '../UI/packages/button'
-import MyTable from '../UI/packages/MyTable'
-Vue.use(Button)
-Vue.use(MyTable)
-
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   render: (h) => h(App),
-}).$mount('#app')
+}).$mount("#app");

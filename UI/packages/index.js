@@ -1,22 +1,24 @@
-import MyTable from './MyTable'
-import Button from './button'
+import MyTable from "./MyTable";
+import Button from "./button";
+import MyForm from "./MyForm";
 
 const components = {
   MyTable,
-  Button
-}
+  Button,
+  MyForm,
+};
 
 const install = function (Vue) {
   if (install.installed) {
-  return;
+    return;
   }
   Object.keys(components).forEach((key) => {
-    Vue.component(components[key].name, components[key])
-  })
-}
+    Vue.component(components[key].name, components[key]);
+  });
+};
 
 const API = {
-  install
-}
+  install,
+};
 
-export default API
+export default API;

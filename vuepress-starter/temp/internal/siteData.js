@@ -16,23 +16,6 @@ export const siteData = {
   ],
   "pages": [
     {
-      "title": "快速上手",
-      "frontmatter": {
-        "title": "快速上手"
-      },
-      "regularPath": "/component/quickstart/quickstart.html",
-      "relativePath": "component/quickstart/quickstart.md",
-      "key": "v-1c28f104",
-      "path": "/component/quickstart/quickstart.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "引入pro-my-ui",
-          "slug": "引入pro-my-ui"
-        }
-      ]
-    },
-    {
       "title": "安装",
       "frontmatter": {
         "title": "安装"
@@ -68,19 +51,19 @@ export const siteData = {
       "path": "/"
     },
     {
-      "title": "MyTable表格",
+      "title": "快速上手",
       "frontmatter": {
-        "title": "MyTable表格"
+        "title": "快速上手"
       },
-      "regularPath": "/component/test/test.html",
-      "relativePath": "component/test/test.md",
-      "key": "v-1af3893e",
-      "path": "/component/test/test.html",
+      "regularPath": "/component/quickstart/quickstart.html",
+      "relativePath": "component/quickstart/quickstart.md",
+      "key": "v-1c28f104",
+      "path": "/component/quickstart/quickstart.html",
       "headers": [
         {
           "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
+          "title": "引入pro-my-ui",
+          "slug": "引入pro-my-ui"
         }
       ]
     },
@@ -123,6 +106,23 @@ export const siteData = {
           "level": 3,
           "title": "ProTable 插槽",
           "slug": "protable-插槽"
+        }
+      ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/test/test.html",
+      "relativePath": "component/test/test.md",
+      "key": "v-1af3893e",
+      "path": "/component/test/test.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
         }
       ]
     }

@@ -6,8 +6,9 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src/*"
-      ]
+        "UI/*"
+      ],
+      "@UI/*": ["UI/packages/*"],
     },
     "lib": [
       "esnext",
