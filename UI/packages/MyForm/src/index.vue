@@ -1,27 +1,12 @@
 <template>
   <el-form ref="formRef" v-bind="$attrs" :model="formData">
-    <el-row
-      v-for="(items, index) in formConfig.formList"
-      :key="index"
-      :gutter="formConfig.gutter"
-    >
-      <el-col
-        v-for="item in items"
-        :key="item.key"
-        :span="item.span || 24 / items.length"
-      >
+    <el-row v-for="(items, index) in formConfig.formList" :key="index" :gutter="formConfig.gutter">
+      <el-col v-for="item in items" :key="item.key" :span="item.span || 24 / items.length">
         <template v-if="!item.noShow">
-          <slot
-            v-if="item.el === 'custom'"
-            :name="item.value"
-            :data="formData[item.value]"
-          />
+          <slot v-if="item.el === 'custom'" :name="item.value" :data="formData[item.value]" />
 
           <el-form-item v-bind="item" v-else>
-            <SearchFormItem
-              :column="item"
-              :search-param="formData"
-            ></SearchFormItem>
+            <SearchFormItem :column="item" :search-param="formData"></SearchFormItem>
           </el-form-item>
         </template>
       </el-col>
@@ -29,7 +14,7 @@
     <el-col>
       <slot name="footBtn">
         <el-form-item v-if="formConfig.formBtn">
-          <div v-for="btn in formConfig.formBtn" :key="btn.name">
+          <div style="display: inline-block;margin: 0 5px;" v-for="btn in formConfig.formBtn" :key="btn.name">
             <el-button :type="btn.type" @click="btn?.callBack(formData)">{{
               btn.name
             }}</el-button>
