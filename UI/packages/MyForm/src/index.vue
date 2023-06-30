@@ -1,6 +1,6 @@
 <template>
   <el-form ref="formRef" v-bind="$attrs" :model="formData">
-    <el-row v-for="(items, index) in formConfig.formList" :key="index" :gutter="formConfig.gutter">
+    <!-- <el-row v-for="(items, index) in formConfig.formList" :key="index" :gutter="formConfig.gutter">
       <el-col v-for="item in items" :key="item.key" :span="item.span || 24 / items.length">
         <template v-if="!item.noShow">
           <slot v-if="item.el === 'custom'" :name="item.value" :data="formData[item.value]" />
@@ -9,7 +9,8 @@
           </el-form-item>
         </template>
       </el-col>
-    </el-row>
+    </el-row> -->
+    <Row :RowList="formConfig" :RowData="formData"></Row>
     <el-col>
       <el-form-item v-if="formConfig.formBtn">
         <div style="display: inline-block; margin: 0 5px" v-for="btn in formConfig.formBtn" :key="btn.name">
@@ -24,11 +25,13 @@
 <script>
 import { deepClone } from "./util.js";
 import SearchFormItem from "@UI/MyForm/src/formItem.vue";
+import Row from "@UI/MyForm/src/Row.vue";
 
 export default {
   name: "MyForm",
   components: {
-    SearchFormItem,
+    // SearchFormItem,
+    Row,
   },
   props: {
     setFormData: {

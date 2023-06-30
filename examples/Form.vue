@@ -46,9 +46,21 @@ export default {
           ],
           [
             {
-              label: "责任人",
+              label: "责任人:",
               value: "list",
-              el: "",
+              el: "towLevel",
+              formList: [
+                {
+                  label: "age:",
+                  value: "list.age",
+                  el: "input",
+                },
+                {
+                  label: "detail:",
+                  value: "list.detail",
+                  el: "input",
+                },
+              ],
             },
           ],
         ],
@@ -72,6 +84,16 @@ export default {
       setFormData: {
         name: "1",
         sex: 0,
+        list: [
+          {
+            age: 18,
+            detail: "111",
+          },
+          {
+            age: 20,
+            detail: "222",
+          },
+        ],
       },
     };
   },
