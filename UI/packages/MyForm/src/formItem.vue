@@ -1,27 +1,15 @@
 <template>
-  <component
-    :is="column.render || `el-${column.el}`"
-    v-bind="{
+  <component :is="column.render || `el-${column.el}`" v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }"
-    v-model.trim="_searchParam[column.key || handleProp(column.value)]"
-    :data="[]"
-    :options="['cascader', 'select-v2'].includes(column.el) ? [] : []"
-  >
+    }" v-model.trim="_searchParam['a']" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
-      <component
-        :is="`el-option`"
-        v-for="(col, index) in column.enum"
-        :key="index"
-        :label="col[fieldNames.label]"
-        :value="col[fieldNames.value]"
-      ></component>
+      <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
     </template>
     <slot v-else></slot>
   </component>
@@ -37,13 +25,19 @@ export default {
     searchParam: {
       type: Object,
     },
+    even: {
+      type: Number
+    }
   },
   computed: {
     _searchParam() {
-      console.log(handleProp(this.column.value));
-      // console.log(this.searchParam[this.column.key || handleProp(this.column.value)]);
-      // console.log(this.column, this.searchParam, 1);
-      return this.searchParam;
+      return { a: 1111 }
+      // get() {
+      //   return this.deal(this.searchParam, this.column.value, this.column.parentValue)
+      // },
+      // set(val) {
+      //   // console.log('111');
+      // }
     },
     // 判断 fieldNames 设置 label && value && children 的 key 值
     fieldNames() {
@@ -106,6 +100,20 @@ export default {
   },
   methods: {
     handleProp,
+    deal(row, key, parentKey) {
+      if (!key.includes(".")) {
+        if (parentKey) {
+          return row[parentKey][this.even][key]
+        } else {
+          return row[key] ?? "--";
+        }
+      }
+      row = key.split(".").reduce((pre, cur) => {
+        pre = pre?.[cur]
+        return pre
+      }, row[parentKey][this.even])
+      return row;
+    },
   },
 };
 </script>

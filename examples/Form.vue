@@ -1,5 +1,15 @@
 <template>
   <div id="app">
+    <el-form :model="setFormData">
+      <el-form-item label="活动名称">
+        <el-input v-model="setFormData.name"></el-input>
+      </el-form-item>
+      <el-form-item label="活动名称">
+        <el-form-item label="活动名称">
+          <el-input v-for="(item, index) in setFormData.list" :key="index" v-model="setFormData.list[index].age"></el-input>
+        </el-form-item>
+      </el-form-item>
+    </el-form>
     <MyForm :setFormData="setFormData" :setFormConfig="setFormConfig" label-position="right" label-width="80px">
       <template #txt>
         <div>111</div>
@@ -49,18 +59,51 @@ export default {
               label: "责任人:",
               value: "list",
               el: "towLevel",
-              formList: [
+              formList: [[
                 {
                   label: "age:",
-                  value: "list.age",
+                  value: "age",
                   el: "input",
                 },
                 {
                   label: "detail:",
-                  value: "list.detail",
+                  value: "sex.detail",
                   el: "input",
                 },
-              ],
+              ], [
+                {
+                  label: "age:",
+                  value: "age",
+                  el: "input",
+                },
+                {
+                  label: "detail:",
+                  value: "detail",
+                  el: "input",
+                },
+              ]],
+            },
+            {
+              label: "责任人:",
+              value: "list2",
+              el: "towLevel",
+              formList: [[
+                {
+                  label: "age2:",
+                  value: "age2",
+                  el: "input",
+                },
+                {
+                  label: "detail2:",
+                  value: "list2.detail2",
+                  el: "input",
+                },
+                {
+                  label: "detail3:",
+                  value: "list2.detail3",
+                  el: "input",
+                },
+              ]],
             },
           ],
         ],
@@ -87,6 +130,9 @@ export default {
         list: [
           {
             age: 18,
+            sex: {
+              detail: '123'
+            },
             detail: "111",
           },
           {
@@ -94,6 +140,13 @@ export default {
             detail: "222",
           },
         ],
+        list2: [{
+          age2: 20,
+          list2: {
+            detail2: '2234',
+            detail3: '2333'
+          }
+        }]
       },
     };
   },
