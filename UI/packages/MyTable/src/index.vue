@@ -14,11 +14,7 @@
       <!-- 表格头部 操作按钮 -->
       <div class="table-header">
         <div class="header-button-lf">
-          <slot
-            name="tableHeader"
-            :selectedListIds="selectedListIds"
-            :selectedList="selectedList"
-          />
+          <slot name="tableHeader" :selectedListIds="selectedListIds" :selectedList="selectedList" />
         </div>
         <!-- <div class="header-button-ri">1123</div> -->
       </div>
@@ -40,23 +36,16 @@
             :align="item.align || 'center'"
             :key="1 - `${index}`"
             :reserve-selection="item.type == 'selection'"
-            v-if="
-              item.type && ['selection', 'index', 'expand'].includes(item.type)
-            "
+            v-if="item.type && ['selection', 'index', 'expand'].includes(item.type)"
           >
             <template #default="scope" v-if="item.type == 'expand'">
-              <component :is="item.render" v-bind="scope" v-if="item.render">
-              </component>
+              <component :is="item.render" v-bind="scope" v-if="item.render"> </component>
               <slot :name="item.type" v-bind="scope" v-else></slot>
             </template>
           </el-table-column>
 
-          <!-- other 循环递归 -->
-          <TableColumn
-            v-if="!item.type && item.prop && item.isShow"
-            :key="1 - `${index}`"
-            :column="item"
-          >
+          <!-- other -->
+          <TableColumn v-if="!item.type && item.prop && item.isShow" :key="1 - `${index}`" :column="item">
             <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
               <slot :name="slot" :row="scope.row"></slot>
             </template>
@@ -220,28 +209,19 @@ export default {
   methods: {
     setColums() {
       // 过滤需要搜索的配置项
-      this.searchColumns = this.flatColumns.filter(
-        (item) => item.search?.el || item.search?.render
-      );
+      this.searchColumns = this.flatColumns.filter((item) => item.search?.el || item.search?.render);
 
       // 设置搜索表单排序默认值 && 设置搜索表单项的默认值
       this.searchColumns.forEach((column, index) => {
         column.search.order = column.search?.order ?? index + 2;
-        if (
-          column.search?.defaultValue !== undefined &&
-          column.search?.defaultValue !== null
-        ) {
-          this.searchInitParam[column.search.key ?? handleProp(column.prop)] =
-            column.search?.defaultValue;
-          this.searchParam[column.search.key ?? handleProp(column.prop)] =
-            column.search?.defaultValue;
+        if (column.search?.defaultValue !== undefined && column.search?.defaultValue !== null) {
+          this.searchInitParam[column.search.key ?? handleProp(column.prop)] = column.search?.defaultValue;
+          this.searchParam[column.search.key ?? handleProp(column.prop)] = column.search?.defaultValue;
         }
       });
 
       // 排序搜索表单项
-      this.searchColumns = this.searchColumns.sort(
-        (a, b) => a.search.order - b.search.order
-      );
+      this.searchColumns = this.searchColumns.sort((a, b) => a.search.order - b.search.order);
     },
     // 更新分页信息
     updatePageable(resPageable) {
@@ -250,11 +230,7 @@ export default {
     async getTableList() {
       try {
         // 先把初始化参数和分页参数放到总参数里面
-        Object.assign(
-          this.totalParam,
-          this.initParam,
-          this.pagination ? this.pageParam.value : {}
-        );
+        Object.assign(this.totalParam, this.initParam, this.pagination ? this.pageParam.value : {});
         let { data } = await this.requestApi({
           ...this.searchInitParam,
           ...this.totalParam,
@@ -347,19 +323,11 @@ export default {
       // 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
       for (let key in this.searchParam) {
         // * 某些情况下参数为 false/0 也应该携带参数
-        if (
-          this.searchParam[key] ||
-          this.searchParam[key] === false ||
-          this.searchParam[key] === 0
-        ) {
+        if (this.searchParam[key] || this.searchParam[key] === false || this.searchParam[key] === 0) {
           nowSearchParam[key] = this.searchParam[key];
         }
       }
-      Object.assign(
-        this.totalParam,
-        nowSearchParam,
-        this.isPageable ? this.pageParam : {}
-      );
+      Object.assign(this.totalParam, nowSearchParam, this.isPageable ? this.pageParam : {});
     },
   },
 };

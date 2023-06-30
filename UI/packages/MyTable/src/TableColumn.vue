@@ -2,38 +2,32 @@
   <el-table-column
     v-bind="column"
     :align="column.align || 'center'"
-    :show-overflow-tooltip="
-      column.showOverflowTooltip || column.prop !== 'operation'
-    "
+    :show-overflow-tooltip="column.showOverflowTooltip || column.prop !== 'operation'"
   >
-    <template #default="scope">
+    <template v-if="column._children">
+      <TableColumn v-for="(even, evenIndex) in column._children" :key="evenIndex" :column="even">
+        <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
+          <slot :name="slot" :row="scope.row"></slot>
+        </template>
+      </TableColumn>
+    </template>
+
+    <template slot-scope="scope">
       <div v-if="column.render">
-        <expandDom
-          :render="column.render"
-          :index="scope.$index"
-          :column="column"
-          :row="scope.row"
-        ></expandDom>
+        <DxpandDom :render="column.render" :index="scope.$index" :column="column" :row="scope.row"></DxpandDom>
       </div>
-      <template v-else-if="$parent.$parent.$scopedSlots[column.prop]">
+      <template v-else-if="$scopedSlots[column.prop]">
         <slot :name="column.prop" :row="scope.row" />
       </template>
       <div v-else>
         {{ renderCellData(column, scope) }}
       </div>
     </template>
-    <template #header="scope">
+    <template slot="header" slot-scope="scope">
       <template v-if="column.headerRender">
-        <expandDom
-          :render="column.render"
-          :index="scope.$index"
-          :column="column"
-          :row="scope.row"
-        ></expandDom>
+        <DxpandDom :render="column.render" :index="scope.$index" :column="column" :row="scope.row"></DxpandDom>
       </template>
-      <template
-        v-else-if="$parent.$parent.$scopedSlots[`${column.prop}Header`]"
-      >
+      <template v-else-if="$scopedSlots[`${column.prop}Header`]">
         <slot :name="`${column.prop}Header`" :row="column" />
       </template>
       <template v-else>
@@ -45,11 +39,11 @@
 
 <script>
 import { filterEnum, formatValue, handleRowAccordingToProp } from "./util";
-
 export default {
+  name: "TableColumn",
   components: {
     /** render函数渲染组件* */
-    expandDom: {
+    DxpandDom: {
       functional: true,
       props: {
         row: Object,
@@ -72,12 +66,12 @@ export default {
       },
     },
   },
-  inject: ['enumMap'],
+  inject: ["enumMap"],
   props: {
     column: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   methods: {
     // 渲染表格数据
@@ -85,10 +79,9 @@ export default {
       return this.enumMap.get(item.prop) && item.isFilterEnum
         ? filterEnum(handleRowAccordingToProp(scope.row, item.prop), this.enumMap.get(item.prop), item.fieldNames)
         : formatValue(handleRowAccordingToProp(scope.row, item.prop));
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

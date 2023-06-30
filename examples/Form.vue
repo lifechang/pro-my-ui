@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <MyForm
-      :setFormData="setFormData"
-      :setFormConfig="setFormConfig"
-      label-position="right"
-      label-width="80px"
-    >
+    <MyForm :setFormData="setFormData" :setFormConfig="setFormConfig" label-position="right" label-width="80px">
       <template #txt>
         <div>111</div>
       </template>
@@ -29,19 +24,13 @@ export default {
             {
               label: "a:",
               value: "name",
-              span: 8,
               el: "input",
             },
-            {
-              label: "插槽",
-              value: "txt",
-              span: 5,
-              el: "custom",
-            },
+          ],
+          [
             {
               label: "b:",
               value: "sex",
-              span: 6,
               el: "select",
               enum: [
                 {
@@ -57,24 +46,9 @@ export default {
           ],
           [
             {
-              label: "a:",
-              value: "name",
-              el: "input",
-            },
-            {
-              label: "b:",
-              value: "sex",
-              el: "select",
-              enum: [
-                {
-                  label: "男",
-                  value: 1,
-                },
-                {
-                  label: "女",
-                  value: 0,
-                },
-              ],
+              label: "责任人",
+              value: "list",
+              el: "",
             },
           ],
         ],

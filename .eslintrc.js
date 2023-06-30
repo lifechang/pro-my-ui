@@ -1,8 +1,8 @@
 // eslint配置文件，详细规则说明请参考eslint官方文档
 
 module.exports = {
-   //此项是用来告诉eslint找当前配置文件不能往父级查找
-   root: true, 
+  //此项是用来告诉eslint找当前配置文件不能往父级查找
+  root: true,
   env: {
     commonjs: true,
     node: true,
@@ -267,9 +267,6 @@ module.exports = {
     /* 以下是vue的规则 */
     "vue/no-parsing-error": 0,
     "vue/multi-word-component-names": 0,
-    "no-unused-expressions": [
-      "error",
-      { allowShortCircuit: true, allowTernary: true },
-    ],
+    "no-unused-expressions": ["error", { allowShortCircuit: true, allowTernary: true }],
   },
 };

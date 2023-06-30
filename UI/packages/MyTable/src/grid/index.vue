@@ -12,16 +12,16 @@ export default {
     },
     collapsed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     collapsedRows: {
       type: Number,
-      default: 1
+      default: 1,
     },
     gap: {
       type: [Number, Array],
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
     // 注入 cols
@@ -46,7 +46,7 @@ export default {
       return {
         display: "grid",
         gridGap: this.gridGap,
-        gridTemplateColumns: `repeat(${this.gridCols}, minmax(0, 1fr))`
+        gridTemplateColumns: `repeat(${this.gridCols}, minmax(0, 1fr))`,
       };
     },
   },
@@ -67,9 +67,9 @@ export default {
   },
   data() {
     return {
-      breakPoint: 'xl',
+      breakPoint: "xl",
       hiddenIndex: -1,
-    }
+    };
   },
   provide() {
     return {
@@ -81,10 +81,10 @@ export default {
       shouldHiddenIndex: () => this.hiddenIndex,
       // 注入 cols
       cols: () => this.gridCols,
-    }
+    };
   },
   beforeMount() {
-    this.collapsed && this.findIndex()
+    this.collapsed && this.findIndex();
   },
   methods: {
     // 寻找需要开始折叠的字段 index
@@ -93,17 +93,11 @@ export default {
       let suffix = null;
       this.$slots.default.forEach((slot) => {
         // suffix
-        if (
-          slot.key !== undefined &&
-          !slot.componentOptions?.propsData
-            ?.suffix
-        ) {
+        if (slot.key !== undefined && !slot.componentOptions?.propsData?.suffix) {
           fields.push(slot);
         }
         // slot children
-        if (slot.key === undefined &&
-          slot.componentOptions?.propsData
-            ?.suffix === '') {
+        if (slot.key === undefined && slot.componentOptions?.propsData?.suffix === "") {
           suffix = slot;
         }
       });
@@ -112,9 +106,7 @@ export default {
       let suffixCols = 0;
       if (suffix) {
         suffixCols =
-          (suffix.componentOptions?.propsData[this.breakPoint]?.span ??
-            suffix.componentOptions?.propsData?.span ??
-            1) +
+          (suffix.componentOptions?.propsData[this.breakPoint]?.span ?? suffix.componentOptions?.propsData?.span ?? 1) +
           (suffix.componentOptions?.propsData[this.breakPoint]?.offset ??
             suffix.componentOptions?.propsData?.offset ??
             0);
@@ -145,7 +137,7 @@ export default {
     },
     // 监听屏幕变化
     resize(e) {
-      let width = (e.target).innerWidth;
+      let width = e.target.innerWidth;
       switch (Boolean(width)) {
         case width < 768:
           this.breakPoint = "xs";
@@ -163,9 +155,9 @@ export default {
           this.breakPoint = "xl";
           break;
         default:
-          break
+          break;
       }
-    }
+    },
   },
   mounted() {
     this.resize({ target: { innerWidth: window.innerWidth } });
@@ -181,5 +173,5 @@ export default {
   deactivated() {
     window.removeEventListener("resize", this.resize);
   },
-}
+};
 </script>
