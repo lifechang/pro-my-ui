@@ -22,6 +22,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-ui": "^2.15.13",
+    "lodash": "^4.17.21",
     "vue": "^2.6.14",
     "webpack-cli": "^5.1.4"
   },

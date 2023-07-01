@@ -4,7 +4,7 @@
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }" v-model.trim="_searchParam['a']" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
+    }" v-model.trim="_searchParam" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import { handleProp } from "./util";
 export default {
   props: {
@@ -25,19 +26,23 @@ export default {
     searchParam: {
       type: Object,
     },
-    even: {
+    EvenIndex: {
       type: Number
     }
   },
+  data() {
+    return {
+      data: this.searchParam
+    }
+  },
   computed: {
-    _searchParam() {
-      return { a: 1111 }
-      // get() {
-      //   return this.deal(this.searchParam, this.column.value, this.column.parentValue)
-      // },
-      // set(val) {
-      //   // console.log('111');
-      // }
+    _searchParam: {
+      get() {
+        return this.deal(this.data, this.column.value, this.column.parentValue, this.column.levelIndex, 'get')
+      },
+      set(val) {
+        this.deal(this.data, this.column.value, this.column.parentValue, this.column.levelIndex, 'set', val)
+      }
     },
     // 判断 fieldNames 设置 label && value && children 的 key 值
     fieldNames() {
@@ -98,21 +103,45 @@ export default {
       return search?.props?.clearable ?? (search?.defaultValue === null || search?.defaultValue === undefined);
     },
   },
+  mounted() {
+    // console.log(this.column);
+  },
   methods: {
     handleProp,
-    deal(row, key, parentKey) {
+    deal(row, key, parentKey, levelIndex, type, val) {
+      // value数据参数不包含(.)的
       if (!key.includes(".")) {
+        // 二级数据set, get
         if (parentKey) {
-          return row[parentKey][this.even][key]
-        } else {
-          return row[key] ?? "--";
+          if (type === 'get') {
+            return row[parentKey][this.EvenIndex][key]
+          } else {
+            row[parentKey][this.EvenIndex][key] = val
+          }
+        }
+        // 一级数据set, get
+        if (!parentKey) {
+          if (type === 'get') {
+            return row[key] ?? "--";
+          } else {
+            row[key] = val
+          }
         }
       }
-      row = key.split(".").reduce((pre, cur) => {
-        pre = pre?.[cur]
-        return pre
-      }, row[parentKey][this.even])
-      return row;
+      // value数据参数包含(.)的
+      if (key.includes(".")) {
+        // 二级数据get, set
+        if (type === 'get') {
+          let res = key.split(".").reduce((pre, cur) => {
+            pre = pre?.[cur]
+            return pre
+          }, row[parentKey][this.EvenIndex])
+          return res;
+        } else {
+          let newObject = key.split(".").reduceRight((obj, next) => ({ [next]: obj }), val)
+          _.merge(row[parentKey][this.EvenIndex], newObject)
+        }
+      }
     },
   },
 };

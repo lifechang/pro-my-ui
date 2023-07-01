@@ -5,14 +5,17 @@
         <template v-if="!item.noShow">
           <slot v-if="item.el === 'custom'" :name="item.value" :data="RowData" />
           <el-form-item v-bind="item" v-else-if="item.el === 'towLevel'">
-            <Row :RowList="istowLevel(item)" :RowData="RowData"> </Row>
+            <Row v-for="(even, evenIndex) in item.multiple ? RowData[item.value].length : 1" :key="evenIndex" :RowList="istowLevel(item, evenIndex)" :EvenIndex="evenIndex" :RowData="RowData">
+            </Row>
+            <div v-if="item.multiple" @click="addItemList(item, RowData)">新增</div>
           </el-form-item>
           <el-form-item v-bind="item" v-else>
-            <SearchFormItem :column="item" :even="index" :search-param="RowData"></SearchFormItem>
+            <SearchFormItem :column="item" :EvenIndex="EvenIndex" :search-param="RowData"></SearchFormItem>
           </el-form-item>
         </template>
       </el-col>
     </el-row>
+    <div>1111</div>
   </div>
 </template>
 
@@ -31,32 +34,34 @@ export default {
     RowData: {
       type: Object,
     },
+    EvenIndex: {
+      type: Number
+    }
   },
   computed: {
     istowLevel: () => {
-      return (val) => {
+      return (val, levelIndex) => {
         val.formList?.flat(2).forEach((v) => {
           v.towLevel = true
           v.parentValue = val.value
+          v.levelIndex = levelIndex
         })
         return val
       }
     }
   },
   mounted() {
-
     // console.log(this.RowData, this.RowList);
   },
   methods: {
-    // istowLevel(val) {
-    //   console.log(val.formList.flat());
-    //   val.formList?.flat(2).forEach((v) => {
-    //     v.towLevel = true
-    //   })
-    //   return val
-    // }
+    addItemList(item, data) {
+      console.log(data);
+      data[item.value].push([{}])
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "UI/css/form.scss";
+</style>

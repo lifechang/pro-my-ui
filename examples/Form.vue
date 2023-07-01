@@ -1,15 +1,5 @@
 <template>
   <div id="app">
-    <el-form :model="setFormData">
-      <el-form-item label="活动名称">
-        <el-input v-model="setFormData.name"></el-input>
-      </el-form-item>
-      <el-form-item label="活动名称">
-        <el-form-item label="活动名称">
-          <el-input v-for="(item, index) in setFormData.list" :key="index" v-model="setFormData.list[index].age"></el-input>
-        </el-form-item>
-      </el-form-item>
-    </el-form>
     <MyForm :setFormData="setFormData" :setFormConfig="setFormConfig" label-position="right" label-width="80px">
       <template #txt>
         <div>111</div>
@@ -59,21 +49,24 @@ export default {
               label: "责任人:",
               value: "list",
               el: "towLevel",
+              multiple: true,
               formList: [[
                 {
                   label: "age:",
                   value: "age",
+                  span: 12,
                   el: "input",
                 },
                 {
                   label: "detail:",
                   value: "sex.detail",
+                  span: 12,
                   el: "input",
                 },
               ], [
                 {
-                  label: "age:",
-                  value: "age",
+                  label: "ccc:",
+                  value: "ccc",
                   el: "input",
                 },
                 {
@@ -95,7 +88,7 @@ export default {
                 },
                 {
                   label: "detail2:",
-                  value: "list2.detail2",
+                  value: "list2.detail2.aaa",
                   el: "input",
                 },
                 {
@@ -133,17 +126,24 @@ export default {
             sex: {
               detail: '123'
             },
+            ccc: 'ccc',
             detail: "111",
           },
           {
             age: 20,
-            detail: "222",
+            sex: {
+              detail: 'aaaa'
+            },
+            ccc: 'asdasdas',
+            detail: "",
           },
         ],
         list2: [{
           age2: 20,
           list2: {
-            detail2: '2234',
+            detail2: {
+              aaa: '111'
+            },
             detail3: '2333'
           }
         }]
