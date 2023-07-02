@@ -38,10 +38,10 @@ export default {
   computed: {
     _searchParam: {
       get() {
-        return this.deal(this.data, this.column.value, this.column.parentValue, this.column.levelIndex, 'get')
+        return this.deal(this.data, this.column.value, this.column.parentValue, 'get')
       },
       set(val) {
-        this.deal(this.data, this.column.value, this.column.parentValue, this.column.levelIndex, 'set', val)
+        this.deal(this.data, this.column.value, this.column.parentValue, 'set', val)
       }
     },
     // 判断 fieldNames 设置 label && value && children 的 key 值
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     handleProp,
-    deal(row, key, parentKey, levelIndex, type, val) {
+    deal(row, key, parentKey, type, val) {
       // value数据参数不包含(.)的
       if (!key.includes(".")) {
         // 二级数据set, get
@@ -116,7 +116,7 @@ export default {
           if (type === 'get') {
             return row[parentKey][this.EvenIndex][key]
           } else {
-            row[parentKey][this.EvenIndex][key] = val
+            this.$set(row[parentKey][this.EvenIndex], key, val)
           }
         }
         // 一级数据set, get
@@ -124,7 +124,7 @@ export default {
           if (type === 'get') {
             return row[key] ?? "--";
           } else {
-            row[key] = val
+            this.$set(row, key, val)
           }
         }
       }
@@ -139,7 +139,10 @@ export default {
           return res;
         } else {
           let newObject = key.split(".").reduceRight((obj, next) => ({ [next]: obj }), val)
+          // console.log(row[parentKey], this.EvenIndex, newObject);
           _.merge(row[parentKey][this.EvenIndex], newObject)
+          row = Object.assign({}, row)
+          // this.$set(row[parentKey], this.EvenIndex, newObject)
         }
       }
     },

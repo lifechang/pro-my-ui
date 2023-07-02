@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MyForm :setFormData="setFormData" :setFormConfig="setFormConfig" label-position="right" label-width="80px">
+    <MyForm :setFormData="setFormData" :setFormConfig="setFormConfig">
       <template #txt>
         <div>111</div>
       </template>
@@ -54,13 +54,11 @@ export default {
                 {
                   label: "age:",
                   value: "age",
-                  span: 12,
                   el: "input",
                 },
                 {
                   label: "detail:",
-                  value: "sex.detail",
-                  span: 12,
+                  value: "sex",
                   el: "input",
                 },
               ], [
@@ -123,17 +121,13 @@ export default {
         list: [
           {
             age: 18,
-            sex: {
-              detail: '123'
-            },
+            sex: '啊啊啊',
             ccc: 'ccc',
             detail: "111",
           },
           {
             age: 20,
-            sex: {
-              detail: 'aaaa'
-            },
+            sex: '啥地方',
             ccc: 'asdasdas',
             detail: "",
           },

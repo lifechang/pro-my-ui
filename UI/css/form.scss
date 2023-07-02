@@ -29,3 +29,31 @@
 ::v-deep.el-form-item__content {
   margin-left: 0px !important;
 }
+
+.row-container {
+  display: flex;
+}
+
+.myIcon {
+  font-size: 18px;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+  padding: 5px 5px;
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.add {
+  background-color: #409EFF;
+}
+
+.del {
+  background-color: #f56c6c;
+  margin-top: 10px;
+}
+
+.del-box {
+  display: flex;
+  align-items: center;
+}

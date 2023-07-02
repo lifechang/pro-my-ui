@@ -1,6 +1,8 @@
 <template>
-  <el-form ref="formRef" v-bind="$attrs" :model="formData">
-    <Row :RowList="formConfig" :RowData="formData"></Row>
+  <el-form ref="formRef" v-bind="{
+    ...$attrs,
+    'label-width': $attrs['label-width'] ? $attrs['label-width'] : '80px'}" :model="formData">
+    <Row v-bind="$attrs" :RowList="formConfig" :RowData="formData"></Row>
     <el-col>
       <el-form-item v-if="formConfig.formBtn">
         <div style="display: inline-block; margin: 0 5px" v-for="btn in formConfig.formBtn" :key="btn.name">
