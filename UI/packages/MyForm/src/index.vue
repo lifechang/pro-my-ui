@@ -22,6 +22,7 @@
 <script>
 import { deepClone } from "./util.js";
 import Row from "./Row.vue";
+import _ from "lodash";
 
 export default {
   name: "MyForm",
@@ -45,6 +46,14 @@ export default {
     };
   },
   watch: {
+    setFormConfig: {
+      handler(val) {
+        this.setDataList();
+        this.formConfig = deepClone(val);
+      },
+      deep: true,
+      immediate: true,
+    },
     setFormData: {
       handler(val) {
         this.formData = deepClone(val);
@@ -52,15 +61,33 @@ export default {
       deep: true,
       immediate: true,
     },
-    setFormConfig: {
-      handler(val) {
-        this.formConfig = deepClone(val);
-      },
-      deep: true,
-      immediate: true,
+  },
+  methods: {
+    setDataList() {
+      for (let level of this.setFormConfig.formList) {
+        for (let level2 of level) {
+          if (level2.el === "towLevel" && !this.setFormData[level2.value]?.length) {
+            let newObj = {};
+            for (let v of level2.formList) {
+              for (let v2 of v) {
+                if (v2.value.includes(".")) {
+                  _.merge(
+                    newObj,
+                    v2.value.split(".").reduceRight((obj, next) => ({ [next]: obj }), "")
+                  );
+                } else {
+                  _.merge(newObj, { [v2.value]: "" });
+                }
+              }
+            }
+            Object.assign(this.setFormData, { [level2.value]: [newObj] });
+          } else if (!this.setFormData[level2.value]) {
+            Object.assign(this.setFormData, { [level2.value]: undefined });
+          }
+        }
+      }
     },
   },
-  methods: {},
 };
 </script>
 

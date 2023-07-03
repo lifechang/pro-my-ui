@@ -131,7 +131,7 @@ export default {
         // 一级数据set, get
         if (!parentKey) {
           if (type === "get") {
-            return row[key];
+            return row[key] ?? "";
           } else {
             this.$set(row, key, val);
           }

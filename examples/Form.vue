@@ -22,26 +22,33 @@ export default {
         formList: [
           [
             {
-              label: "a:",
+              label: "活动名称:",
               value: "name",
               el: "input",
             },
           ],
           [
             {
-              label: "b:",
-              value: "sex",
+              label: "活动区域:",
+              value: "region",
               el: "select",
               enum: [
                 {
-                  label: "男",
-                  value: 1,
+                  label: "区域一",
+                  value: "shanghai",
                 },
                 {
-                  label: "女",
-                  value: 0,
+                  label: "区域二",
+                  value: "beijing",
                 },
               ],
+            },
+            {
+              label: "活动区域:",
+              value: "time",
+              el: "date-picker",
+              props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss" },
+              // defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
             },
           ],
           [
@@ -126,36 +133,47 @@ export default {
         ],
       },
       setFormData: {
-        name: "1",
-        sex: 0,
-        list: [
-          {
-            age: 18,
-            sex: {
-              one: "啊啊啊",
-            },
-            ccc: "ccc",
-            detail: "111",
-          },
-          {
-            age: 20,
-            sex: "啥地方",
-            ccc: "asdasdas",
-            detail: "",
-          },
-        ],
-        list2: [
-          {
-            age2: 20,
-            list2: {
-              detail2: {
-                aaa: "111",
-                bbb: "22",
-              },
-              detail3: "2333",
-            },
-          },
-        ],
+        name: "",
+        time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
+        // list: [
+        //   {
+        //     age: "1",
+        //   },
+        //   {
+        //     age: "2",
+        //   },
+        // ],
+        // list2: [{}],
+        // name: "1",
+        // sex: 0,
+        // list: [
+        //   {
+        //     age: 18,
+        //     sex: {
+        //       one: "啊啊啊",
+        //     },
+        //     ccc: "ccc",
+        //     detail: "111",
+        //   },
+        //   {
+        //     age: 20,
+        //     sex: "啥地方",
+        //     ccc: "asdasdas",
+        //     detail: "",
+        //   },
+        // ],
+        // list2: [
+        //   {
+        //     age2: 20,
+        //     list2: {
+        //       detail2: {
+        //         aaa: "111",
+        //         bbb: "22",
+        //       },
+        //       detail3: "2333",
+        //     },
+        //   },
+        // ],
       },
     };
   },

@@ -2,12 +2,12 @@
   <div class="row-container">
     <div class="row-box">
       <el-row v-for="(items, index) in RowList.formList" :key="index" :gutter="RowList.gutter">
-        <el-col v-for="item in items" :key="item.value" :span="item.span || 24 / items.length">
+        <el-col v-for="(item, itemIndex) in items" :key="itemIndex" :span="item.span || 24 / items?.length">
           <template v-if="!item.noShow">
             <slot v-if="item.el === 'custom'" :name="item.value" :data="RowData" />
             <el-form-item v-bind="item" v-else-if="item.el === 'towLevel'">
               <Row
-                v-for="(even, evenIndex) in item.multiple ? RowData[item.value].length : 1"
+                v-for="(even, evenIndex) in item.multiple ? RowData[item.value]?.length : 1"
                 :key="evenIndex"
                 :RowList="istowLevel(item)"
                 :EvenIndex="evenIndex"
@@ -31,7 +31,7 @@
     <div class="del-box">
       <i
         class="el-icon-minus myIcon del"
-        v-if="RowList.multiple && RowData[this.RowList.value].length > 1"
+        v-if="RowList.multiple && RowData[this.RowList.value]?.length > 1"
         @click="delItemList(RowData)"
       ></i>
     </div>
@@ -95,7 +95,7 @@ export default {
         }
       }
       // Vue.observable变为响应式对象
-      this.$set(data[item.value], data[item.value].length, Vue.observable(newObj));
+      this.$set(data[item.value], data[item.value]?.length, Vue.observable(newObj));
     },
     delItemList(data) {
       data[this.RowList.value].splice(this.EvenIndex, 1);
