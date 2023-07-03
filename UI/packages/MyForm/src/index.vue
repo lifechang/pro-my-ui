@@ -1,12 +1,8 @@
 <template>
-  <el-form
-    ref="formRef"
-    v-bind="{
+  <el-form ref="formRef" v-bind="{
       ...$attrs,
       'label-width': $attrs['label-width'] ? $attrs['label-width'] : '80px',
-    }"
-    :model="formData"
-  >
+    }" :model="formData">
     <Row v-bind="$attrs" :RowList="formConfig" :RowData="formData"></Row>
     <el-col>
       <el-form-item v-if="formConfig.formBtn">
@@ -50,6 +46,7 @@ export default {
       handler(val) {
         this.setDataList();
         this.formConfig = deepClone(val);
+        console.log(this.formConfig);
       },
       deep: true,
       immediate: true,

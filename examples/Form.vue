@@ -32,6 +32,7 @@ export default {
               label: "活动区域:",
               value: "region",
               el: "select",
+              span: 8,
               enum: [
                 {
                   label: "区域一",
@@ -44,76 +45,84 @@ export default {
               ],
             },
             {
-              label: "活动区域:",
+              label: "活动时间:",
               value: "time",
+              span: 16,
               el: "date-picker",
               props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss" },
-              // defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
             },
           ],
           [
             {
-              label: "责任人:",
+              label: "参加人员:",
               value: "list",
               el: "towLevel",
               multiple: true,
               formList: [
                 [
                   {
-                    label: "age:",
-                    value: "age",
+                    label: "姓名:",
+                    value: "name",
                     el: "input",
                   },
                   {
-                    label: "detail:",
-                    value: "sex.one",
-                    el: "input",
+                    label: "状态:",
+                    value: "info.status",
+                    el: "switch",
+                    props: {
+                      'active-text': "参加",
+                      'inactive-text': "未参加"
+                    }
                   },
                 ],
                 [
                   {
-                    label: "ccc:",
-                    value: "ccc",
-                    el: "input",
-                  },
-                  {
-                    label: "detail:",
-                    value: "detail",
-                    el: "input",
-                  },
+                    label: "城市:",
+                    value: "city",
+                    span: 16,
+                    el: "select",
+                    enum: async () => {
+                      let res = await new Promise((resolve) => {
+                        resolve([{ name: '上海', key: 1 }, { name: '北京', key: 1 }])
+                      })
+                      console.log(res);
+                      return res
+                    },
+                    fieldNames: {
+                      label: 'name',
+                      vlaue: 'key',
+                    }
+                  }
                 ],
               ],
             },
             {
-              label: "责任人:",
+              label: "负责人:",
               value: "list2",
               el: "towLevel",
               formList: [
                 [
                   {
-                    label: "age2:",
-                    value: "age2",
+                    label: "姓名:",
+                    value: "name",
+                    span: 8,
                     el: "input",
                   },
                   {
-                    label: "detail2:",
-                    value: "list2.detail2.aaa",
-                    el: "input",
-                  },
-                  {
-                    label: "detail3:",
-                    value: "list2.detail3",
-                    el: "input",
-                  },
-                  {
-                    label: "detail2:",
-                    value: "list2.detail2.bbb",
+                    label: "手机号:",
+                    value: "detail.info.phone",
+                    span: 16,
                     el: "input",
                   },
                 ],
               ],
             },
           ],
+          [{
+            label: '活动地址',
+            value: 'address',
+            el: 'input'
+          }]
         ],
         formBtn: [
           {
@@ -133,47 +142,16 @@ export default {
         ],
       },
       setFormData: {
-        name: "",
+        name: "表单验证",
         time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
-        // list: [
-        //   {
-        //     age: "1",
-        //   },
-        //   {
-        //     age: "2",
-        //   },
-        // ],
-        // list2: [{}],
-        // name: "1",
-        // sex: 0,
-        // list: [
-        //   {
-        //     age: 18,
-        //     sex: {
-        //       one: "啊啊啊",
-        //     },
-        //     ccc: "ccc",
-        //     detail: "111",
-        //   },
-        //   {
-        //     age: 20,
-        //     sex: "啥地方",
-        //     ccc: "asdasdas",
-        //     detail: "",
-        //   },
-        // ],
-        // list2: [
-        //   {
-        //     age2: 20,
-        //     list2: {
-        //       detail2: {
-        //         aaa: "111",
-        //         bbb: "22",
-        //       },
-        //       detail3: "2333",
-        //     },
-        //   },
-        // ],
+        list: [
+          {
+            name: '',
+            info: {
+              status: true,
+            },
+          },
+        ],
       },
     };
   },

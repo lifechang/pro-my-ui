@@ -1,27 +1,15 @@
 <template>
-  <component
-    :is="column.render || `el-${column.el}`"
-    v-bind="{
+  <component :is="column.render || `el-${column.el}`" v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }"
-    v-model.trim="_searchParam"
-    :data="[]"
-    :options="['cascader', 'select-v2'].includes(column.el) ? [] : []"
-  >
+    }" v-model.trim="_searchParam" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
-      <component
-        :is="`el-option`"
-        v-for="(col, index) in column.enum"
-        :key="index"
-        :label="col[fieldNames.label]"
-        :value="col[fieldNames.value]"
-      ></component>
+      <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
     </template>
     <slot v-else></slot>
   </component>
@@ -112,7 +100,7 @@ export default {
     // 是否有清除按钮 (当搜索项有默认值时，清除按钮不显示)
     clearable() {
       const search = this.column;
-      return search?.props?.clearable ?? (search?.defaultValue === null || search?.defaultValue === undefined);
+      return search?.props?.clearable;
     },
   },
   methods: {

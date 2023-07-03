@@ -1,36 +1,38 @@
-
-
 .row-container {
   display: flex;
 
   .el-select {
     width: 100%;
   }
-  
+
   .el-input {
     width: 100%;
   }
-  
+
   ::v-deep.el-row {
     margin-left: 0 !important;
     margin-right: 0 !important;
     display: flex;
   }
-  
+
   // ::v-deep.el-col {
   //   padding-left: 0 !important;
   //   padding-right: 0 !important;
   // }
-  
+
   .el-form-item {
     margin: 5px 0;
   }
-  
+
+  .el-range-editor.el-input__inner {
+    width: 100%;
+  }
+
   .el-form-item--mini.el-form-item,
   .el-form-item--small.el-form-item {
     margin-bottom: 0px;
   }
-  
+
   ::v-deep.el-form-item__content {
     margin-left: 0px !important;
   }
@@ -52,7 +54,7 @@
     cursor: pointer;
     margin-left: 3px;
   }
-  
+
   .del-box {
     display: flex;
     align-items: center;

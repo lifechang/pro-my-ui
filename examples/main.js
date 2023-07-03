@@ -17,6 +17,7 @@ import {
   FormItem,
   Row,
   Col,
+  Switch,
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(aButton);
@@ -34,6 +35,7 @@ Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Switch);
 
 import "../UI/css/button.scss";
 import Button from "../UI/packages/button";
