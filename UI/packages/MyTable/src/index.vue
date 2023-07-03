@@ -238,7 +238,6 @@ export default {
         if (this.dataCallback) {
           data = this.dataCallback(data);
         }
-        // this.dataCallBack && (data = this.dataCallBack(data));
         this.tableData = this.pagination ? data.list : data;
         // 解构后台返回的分页数据 (如果有分页更新分页信息)
         const { pageNum, pageSize, total } = data;

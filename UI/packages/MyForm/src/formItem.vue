@@ -1,15 +1,27 @@
 <template>
-  <component :is="column.render || `el-${column.el}`" v-bind="{
+  <component
+    :is="column.render || `el-${column.el}`"
+    v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }" v-model.trim="_searchParam" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
+    }"
+    v-model.trim="_searchParam"
+    :data="[]"
+    :options="['cascader', 'select-v2'].includes(column.el) ? [] : []"
+  >
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
-      <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
+      <component
+        :is="`el-option`"
+        v-for="(col, index) in column.enum"
+        :key="index"
+        :label="col[fieldNames.label]"
+        :value="col[fieldNames.value]"
+      ></component>
     </template>
     <slot v-else></slot>
   </component>
@@ -27,22 +39,22 @@ export default {
       type: Object,
     },
     EvenIndex: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data() {
     return {
-      data: this.searchParam
-    }
+      data: this.searchParam,
+    };
   },
   computed: {
     _searchParam: {
       get() {
-        return this.deal(this.data, this.column.value, this.column.parentValue, 'get')
+        return this.dealColumn(this.data, this.column.value, this.column.parentValue, "get");
       },
       set(val) {
-        this.deal(this.data, this.column.value, this.column.parentValue, 'set', val)
-      }
+        this.dealColumn(this.data, this.column.value, this.column.parentValue, "set", val);
+      },
     },
     // 判断 fieldNames 设置 label && value && children 的 key 值
     fieldNames() {
@@ -103,46 +115,40 @@ export default {
       return search?.props?.clearable ?? (search?.defaultValue === null || search?.defaultValue === undefined);
     },
   },
-  mounted() {
-    // console.log(this.column);
-  },
   methods: {
     handleProp,
-    deal(row, key, parentKey, type, val) {
+    dealColumn(row, key, parentKey, type, val) {
       // value数据参数不包含(.)的
       if (!key.includes(".")) {
         // 二级数据set, get
         if (parentKey) {
-          if (type === 'get') {
-            return row[parentKey][this.EvenIndex][key]
+          if (type === "get") {
+            return row[parentKey][this.EvenIndex][key];
           } else {
-            this.$set(row[parentKey][this.EvenIndex], key, val)
+            this.$set(row[parentKey][this.EvenIndex], key, val);
           }
         }
         // 一级数据set, get
         if (!parentKey) {
-          if (type === 'get') {
-            return row[key] ?? "--";
+          if (type === "get") {
+            return row[key];
           } else {
-            this.$set(row, key, val)
+            this.$set(row, key, val);
           }
         }
       }
       // value数据参数包含(.)的
       if (key.includes(".")) {
         // 二级数据get, set
-        if (type === 'get') {
+        if (type === "get") {
           let res = key.split(".").reduce((pre, cur) => {
-            pre = pre?.[cur]
-            return pre
-          }, row[parentKey][this.EvenIndex])
+            pre = pre?.[cur];
+            return pre;
+          }, row[parentKey][this.EvenIndex]);
           return res;
         } else {
-          let newObject = key.split(".").reduceRight((obj, next) => ({ [next]: obj }), val)
-          // console.log(row[parentKey], this.EvenIndex, newObject);
-          _.merge(row[parentKey][this.EvenIndex], newObject)
-          row = Object.assign({}, row)
-          // this.$set(row[parentKey], this.EvenIndex, newObject)
+          let newObject = key.split(".").reduceRight((obj, next) => ({ [next]: obj }), val);
+          _.merge(row[parentKey][this.EvenIndex], newObject);
         }
       }
     },

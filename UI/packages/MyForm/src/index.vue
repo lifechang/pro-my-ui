@@ -1,7 +1,12 @@
 <template>
-  <el-form ref="formRef" v-bind="{
-    ...$attrs,
-    'label-width': $attrs['label-width'] ? $attrs['label-width'] : '80px'}" :model="formData">
+  <el-form
+    ref="formRef"
+    v-bind="{
+      ...$attrs,
+      'label-width': $attrs['label-width'] ? $attrs['label-width'] : '80px',
+    }"
+    :model="formData"
+  >
     <Row v-bind="$attrs" :RowList="formConfig" :RowData="formData"></Row>
     <el-col>
       <el-form-item v-if="formConfig.formBtn">
@@ -59,5 +64,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
