@@ -81,7 +81,6 @@ export default {
               label: "责任人:",
               value: "list2",
               el: "towLevel",
-              multiple: true,
               formList: [
                 [
                   {

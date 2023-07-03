@@ -21,7 +21,7 @@
 
 <script>
 import { deepClone } from "./util.js";
-import Row from "@UI/MyForm/src/Row.vue";
+import Row from "./Row.vue";
 
 export default {
   name: "MyForm",

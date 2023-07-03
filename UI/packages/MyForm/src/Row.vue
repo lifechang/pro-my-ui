@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import SearchFormItem from "@UI/MyForm/src/formItem.vue";
+import SearchFormItem from "./formItem.vue";
 import Vue from "vue";
 import _ from "lodash";
 
