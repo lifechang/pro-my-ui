@@ -1,6 +1,6 @@
 <template>
   <div class="row-container">
-    <div>
+    <div class="row-box">
       <el-row v-for="(items, index) in RowList.formList" :key="index" :gutter="RowList.gutter">
         <el-col v-for="item in items" :key="item.value" :span="item.span || 24 / items.length">
           <template v-if="!item.noShow">

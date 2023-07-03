@@ -24,6 +24,19 @@
       margin-bottom: 10px;
 
       .el-form {
+
+        .el-form-item {
+            display: flex;
+          
+            > :nth-child(2) {
+              flex: 1;
+          
+              .el-select {
+                width: 100%;
+              }
+            }
+          }
+
           .el-form-item__content>* {
               width: 100%;
           }

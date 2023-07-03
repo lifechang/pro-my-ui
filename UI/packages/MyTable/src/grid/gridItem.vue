@@ -45,19 +45,15 @@ export default {
     breakPoint: {
       handler() {
         if (this.$attrs.index || false) {
-          this.isShow = !(
-            this.listen !== -1 && parseInt(this.$attrs.index) >= Number(this.listen)
-          );
+          this.isShow = !(this.listen !== -1 && parseInt(this.$attrs.index) >= Number(this.listen));
         }
       },
-      immediate: true
+      immediate: true,
     },
     listenHiddenIndex: {
       handler(n) {
         if (this.$attrs.index || false) {
-          this.isShow = !(
-            n !== -1 && parseInt(this.$attrs.index) >= Number(n)
-          );
+          this.isShow = !(n !== -1 && parseInt(this.$attrs.index) >= Number(n));
         }
       },
       immediate: true,
@@ -65,10 +61,10 @@ export default {
   },
   computed: {
     listenHiddenIndex() {
-      return this.shouldHiddenIndex()
+      return this.shouldHiddenIndex();
     },
     listenCols() {
-      return this.cols()
+      return this.cols();
     },
     style() {
       let span = this[this.breakPoint]?.span ?? this.span;
@@ -77,19 +73,14 @@ export default {
         return {
           gridColumnStart: this.listenCols - span - offset + 1,
           gridColumnEnd: `span ${span + offset}`,
-          marginLeft:
-            offset !== 0
-              ? `calc(((100% + ${this.gap}px) / ${span + offset}) * ${offset})`
-              : "unset",
+          marginLeft: offset !== 0 ? `calc(((100% + ${this.gap}px) / ${span + offset}) * ${offset})` : "unset",
         };
       } else {
         return {
-          gridColumn: `span ${span + offset > this.listenCols ? this.listenCols : span + offset
-            }/span ${span + offset > this.listenCols ? this.listenCols : span + offset}`,
-          marginLeft:
-            offset !== 0
-              ? `calc(((100% + ${this.gap}px) / ${span + offset}) * ${offset})`
-              : "unset",
+          gridColumn: `span ${span + offset > this.listenCols ? this.listenCols : span + offset}/span ${
+            span + offset > this.listenCols ? this.listenCols : span + offset
+          }`,
+          marginLeft: offset !== 0 ? `calc(((100% + ${this.gap}px) / ${span + offset}) * ${offset})` : "unset",
         };
       }
     },
@@ -101,3 +92,4 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped></style>

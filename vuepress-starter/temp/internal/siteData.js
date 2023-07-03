@@ -16,19 +16,19 @@ export const siteData = {
   ],
   "pages": [
     {
-      "title": "安装",
+      "title": "MyForm表单",
       "frontmatter": {
-        "title": "安装"
+        "title": "MyForm表单"
       },
-      "regularPath": "/component/installation/installation.html",
-      "relativePath": "component/installation/installation.md",
-      "key": "v-52daa784",
-      "path": "/component/installation/installation.html",
+      "regularPath": "/component/form/form.html",
+      "relativePath": "component/form/form.md",
+      "key": "v-4b5fb13e",
+      "path": "/component/form/form.html",
       "headers": [
         {
           "level": 2,
-          "title": "NPM安装",
-          "slug": "npm安装"
+          "title": "基本用法",
+          "slug": "基本用法"
         }
       ]
     },
@@ -125,6 +125,23 @@ export const siteData = {
           "slug": "基本用法"
         }
       ]
+    },
+    {
+      "title": "安装",
+      "frontmatter": {
+        "title": "安装"
+      },
+      "regularPath": "/component/installation/installation.html",
+      "relativePath": "component/installation/installation.md",
+      "key": "v-52daa784",
+      "path": "/component/installation/installation.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "NPM安装",
+          "slug": "npm安装"
+        }
+      ]
     }
   ],
   "themeConfig": {
@@ -149,7 +166,8 @@ export const siteData = {
         "collapsable": false,
         "sidebarDepth": 0,
         "children": [
-          "/component/table/table.md"
+          "/component/table/table.md",
+          "/component/form/form.md"
         ]
       }
     ]

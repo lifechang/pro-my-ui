@@ -9,9 +9,7 @@
     }"
     v-model.trim="_searchParam[column.search.key || handleProp(column.prop)]"
     :data="[]"
-    :options="
-      ['cascader', 'select-v2'].includes(column.search.el) ? columnEnum : []
-    "
+    :options="['cascader', 'select-v2'].includes(column.search.el) ? columnEnum : []"
   >
     <template v-if="column.search.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
@@ -95,34 +93,25 @@ export default {
     // 处理默认 placeholder
     placeholder() {
       const search = this.column.search;
-      if (
-        ["datetimerange", "daterange", "monthrange"].includes(
-          search?.props?.type
-        ) ||
-        search?.props?.isRange
-      ) {
+      if (["datetimerange", "daterange", "monthrange"].includes(search?.props?.type) || search?.props?.isRange) {
         return {
           rangeSeparator: "至",
           startPlaceholder: "开始时间",
           endPlaceholder: "结束时间",
         };
       }
-      const placeholder =
-        search?.props?.placeholder ??
-        (search?.el?.includes("input") ? "请输入" : "请选择");
+      const placeholder = search?.props?.placeholder ?? (search?.el?.includes("input") ? "请输入" : "请选择");
       return { placeholder };
     },
     // 是否有清除按钮 (当搜索项有默认值时，清除按钮不显示)
     clearable() {
       const search = this.column.search;
-      return (
-        search?.props?.clearable ??
-        (search?.defaultValue === null || search?.defaultValue === undefined)
-      );
+      return search?.props?.clearable ?? (search?.defaultValue === null || search?.defaultValue === undefined);
     },
   },
   methods: {
-    handleProp
-  }
+    handleProp,
+  },
 };
 </script>
+<style lang="scss" scoped></style>

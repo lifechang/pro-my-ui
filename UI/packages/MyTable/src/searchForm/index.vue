@@ -1,18 +1,8 @@
 <template>
   <div v-if="columns.length" class="card table-search">
     <el-form ref="formRef" :model="searchParam">
-      <Grid
-        ref="gridRef"
-        :collapsed="collapsed"
-        :gap="[20, 0]"
-        :cols="searchCol"
-      >
-        <GridItem
-          v-for="(item, index) in columns"
-          :key="item.prop"
-          v-bind="getResponsive(item)"
-          :index="index"
-        >
+      <Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
+        <GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
           <el-form-item :label="`${item.label} :`">
             <SearchFormItem :column="item" :search-param="searchParam" />
           </el-form-item>
@@ -21,17 +11,9 @@
           <div class="operation">
             <el-button type="primary" @click="search"> 搜索 </el-button>
             <el-button @click="reset"> 重置 </el-button>
-            <el-button
-              v-if="showCollapse"
-              type="text"
-              link
-              class="search-isOpen"
-              @click="collapsed = !collapsed"
-            >
+            <el-button v-if="showCollapse" type="text" link class="search-isOpen" @click="collapsed = !collapsed">
               {{ collapsed ? "展开" : "合并" }}
-              <i
-                :class="collapsed ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
-              ></i>
+              <i :class="collapsed ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"></i>
             </el-button>
           </div>
         </GridItem>
@@ -46,6 +28,7 @@ import Grid from "../grid/index.vue";
 import GridItem from "../grid/gridItem.vue";
 
 export default {
+  name: "searchForm",
   components: {
     SearchFormItem,
     Grid,
@@ -87,9 +70,7 @@ export default {
       this.columns.reduce((prev, current) => {
         prev +=
           (current.search[this.breakPoint]?.span ?? current.search?.span ?? 1) +
-          (current.search[this.breakPoint]?.offset ??
-            current.search?.offset ??
-            0);
+          (current.search[this.breakPoint]?.offset ?? current.search?.offset ?? 0);
         if (typeof this.searchCol !== "number") {
           if (prev >= this.searchCol[this.breakPoint]) {
             show = true;
@@ -131,6 +112,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "UI/css/searchForm.scss";
-</style>
+<style lang="scss" scoped></style>

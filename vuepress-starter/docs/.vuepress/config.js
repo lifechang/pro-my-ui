@@ -44,10 +44,7 @@ module.exports = {
         title: "开发指南", // 一级菜单名称
         collapsable: false, // false为默认展开菜单, 默认值true是折叠,
         sidebarDepth: 1, //  设置侧边导航自动提取markdown文件标题的层级，默认1为h2层级
-        children: [
-          "/component/installation/installation.md",
-          "/component/quickstart/quickstart.md",
-        ],
+        children: ["/component/installation/installation.md", "/component/quickstart/quickstart.md"],
       },
       {
         title: "组件",
@@ -55,6 +52,7 @@ module.exports = {
         sidebarDepth: 0,
         children: [
           "/component/table/table.md",
+          "/component/form/form.md",
           // '/component/test/test.md'
         ],
       },
