@@ -1,15 +1,27 @@
 <template>
-  <component :is="column.render || `el-${column.el}`" v-bind="{
+  <component
+    :is="column.render || `el-${column.el}`"
+    v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }" v-model.trim="_searchParam" :data="[]" :options="['cascader', 'select-v2'].includes(column.el) ? [] : []">
+    }"
+    v-model.trim="_searchParam"
+    :data="[]"
+    :options="['cascader'].includes(column.el) ? column.enum : []"
+  >
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
-      <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
+      <component
+        :is="`el-option`"
+        v-for="(col, index) in column.enum"
+        :key="index"
+        :label="col[fieldNames.label]"
+        :value="col[fieldNames.value]"
+      ></component>
     </template>
     <slot v-else></slot>
   </component>
@@ -17,7 +29,6 @@
 
 <script>
 import _ from "lodash";
-import { handleProp } from "./util";
 export default {
   props: {
     column: {
@@ -51,23 +62,6 @@ export default {
         value: this.column.fieldNames?.value ?? "value",
         children: this.column.fieldNames?.children ?? "children",
       };
-    },
-    // 接收 enumMap (el 为 select-v2 需单独处理 enumData)
-    columnEnum() {
-      let enumData = this.enumMap.get(this.column.value);
-      if (!enumData) {
-        return [];
-      }
-      if (this.column?.el === "select-v2" && this.column.fieldNames) {
-        enumData = enumData.map((item) => {
-          return {
-            ...item,
-            label: item[this.fieldNames.label],
-            value: item[this.fieldNames.value],
-          };
-        });
-      }
-      return enumData;
     },
     // 处理透传的 searchProps (el 为 tree-select、cascader 的时候需要给下默认 label && value && children)
     handleSearchProps() {
@@ -104,7 +98,6 @@ export default {
     },
   },
   methods: {
-    handleProp,
     dealColumn(row, key, parentKey, type, val) {
       // value数据参数不包含(.)的
       if (!key.includes(".")) {

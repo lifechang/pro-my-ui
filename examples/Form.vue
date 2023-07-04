@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <MyForm ref="myForm" :setFormData="setFormData" :setFormConfig="setFormConfig">
-      <template #txt>
-        <div>111</div>
+    <MyForm ref="myForm" :setFormData="setFormData" :setFormConfig="setFormConfig" :rules="setFormConfig.rules">
+      <template #[`list2.name`]="{ scope }">
+        <div>我是插槽{{ scope.data.data[scope.parentItem.value][scope.index][scope.data.item.value] }}</div>
       </template>
-      <!-- <template #empty>
-        <div>111</div>
-      </template> -->
+      <template #address="{ scope }">
+        <div>{{ scope.data[scope.item.value] }}707办公室</div>
+      </template>
     </MyForm>
   </div>
 </template>
@@ -19,12 +19,19 @@ export default {
     return {
       setFormConfig: {
         gutter: 0,
+        // cols: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12 },
+        rules: {
+          name: [{ required: true, message: "请输入活动名称1", trigger: "blur" }],
+        },
         formList: [
           [
             {
-              label: "活动名称:",
+              label: "活动名称：",
               value: "name",
               el: "input",
+              props: {
+                rules: [{ required: true, message: "请输入活动名称2", trigger: "blur" }],
+              },
             },
           ],
           [
@@ -58,21 +65,27 @@ export default {
               value: "list",
               el: "towLevel",
               multiple: true,
+              props: {
+                rules: [{ required: true, message: "请输入活动名称", trigger: "blur" }],
+              },
               formList: [
                 [
                   {
                     label: "姓名:",
                     value: "name",
                     el: "input",
+                    props: {
+                      rules: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+                    },
                   },
                   {
                     label: "状态:",
                     value: "info.status",
                     el: "switch",
                     props: {
-                      'active-text': "参加",
-                      'inactive-text': "未参加"
-                    }
+                      "active-text": "参加",
+                      "inactive-text": "未参加",
+                    },
                   },
                 ],
                 [
@@ -81,18 +94,29 @@ export default {
                     value: "city",
                     span: 16,
                     el: "select",
-                    enum: async () => {
-                      let res = await new Promise((resolve) => {
-                        resolve([{ name: '上海', key: 1 }, { name: '北京', key: 1 }])
-                      })
-                      console.log(res);
-                      return res
+                    enum: () => {
+                      return new Promise((resolve) => {
+                        setTimeout(() => {
+                          resolve({
+                            data: [
+                              {
+                                name: "1111",
+                                key: "11",
+                              },
+                              {
+                                name: "222",
+                                key: "222",
+                              },
+                            ],
+                          });
+                        }, 3000);
+                      });
                     },
                     fieldNames: {
-                      label: 'name',
-                      vlaue: 'key',
-                    }
-                  }
+                      label: "name",
+                      value: "key",
+                    },
+                  },
                 ],
               ],
             },
@@ -103,40 +127,46 @@ export default {
               formList: [
                 [
                   {
-                    label: "姓名:",
+                    // label: "姓名:",
                     value: "name",
                     span: 8,
-                    el: "input",
+                    el: "custom",
                   },
                   {
                     label: "手机号:",
                     value: "detail.info.phone",
                     span: 16,
                     el: "input",
+                    props: {
+                      rules: [{ required: true, message: "请输入活动名称", trigger: "blur" }],
+                    },
                   },
                 ],
               ],
             },
           ],
-          [{
-            label: '活动地址',
-            value: 'address',
-            el: 'input'
-          }]
+          [
+            {
+              label: "活动地址：",
+              value: "address",
+              el: "custom",
+            },
+          ],
         ],
         formBtn: [
           {
             name: "保存",
             type: "primary",
-            callBack: (data) => {
+            callBack: async (data) => {
+              let res = await this.$refs.myForm.validate();
               console.log(data);
             },
           },
           {
             name: "取消",
             type: "info",
-            callBack: () => {
-              console.log(this.$refs.myForm.formData);
+            callBack: async (data) => {
+              await this.$refs.myForm.resetFields();
             },
           },
         ],
@@ -146,14 +176,36 @@ export default {
         time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
         list: [
           {
-            name: '',
+            name: "",
             info: {
               status: true,
+            },
+            // city: "",
+          },
+        ],
+        list2: [
+          {
+            name: "小明",
+            detail: {
+              info: {
+                phone: "",
+              },
             },
           },
         ],
       },
     };
+  },
+  async mounted() {
+    let res = await new Promise((resolve) => {
+      resolve({
+        data: [
+          { name: "上海", key: 1 },
+          { name: "北京", key: 2 },
+        ],
+      });
+    });
+    // this.setFormConfig.formList[2][0].formList[1][0].enum = res.data;
   },
   methods: {},
 };

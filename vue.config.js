@@ -8,6 +8,14 @@ module.exports = {
       filename: "index.html",
     },
   },
+  devServer: {
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+  },
   // 扩展 webpack 配置，使 packages 加入编译
   chainWebpack: (config) => {
     // @ 默认指向 src 目录，这里要改成 examples
