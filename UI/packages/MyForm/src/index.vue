@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      refForm: this.$refs.formRef,
       formData: {},
       formConfig: {},
     };
@@ -90,6 +91,9 @@ export default {
           }
         }
       }
+    },
+    RefForm() {
+      return this.$refs.formRef;
     },
     validate() {
       return this.$refs.formRef.validate();

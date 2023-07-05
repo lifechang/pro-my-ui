@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="column.render || `el-${column.el}`"
+    :is="`el-${column.el}`"
     v-bind="{
       ...handleSearchProps,
       ...placeholder,

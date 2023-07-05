@@ -167,6 +167,7 @@ export default {
             type: "info",
             callBack: async (data) => {
               await this.$refs.myForm.resetFields();
+              console.log(this.$refs.myForm.RefForm());
             },
           },
         ],

@@ -316,6 +316,18 @@ title: MyForm表单
 
 </div>
 
+### ProForm 方法
+
+::: tip
+ProForm 组件暴露了 el-form 实例和一些组件内部的参数和方法：
+:::
+| 参数 | 说明 |
+| ------------ | :------------------------: |
+| element | el-form 实例，可以通过 this.$refs.element.RefForm().方法名来调用 el-form 的所有方法 |
+| formData | 当前页面所展示的数据 |
+
+</div>
+
 <div class="all-table1">
 
 ### ProForm(插槽)

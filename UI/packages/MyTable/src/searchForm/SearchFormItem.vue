@@ -23,7 +23,7 @@
         :value="col[fieldNames.value]"
       ></component>
     </template>
-    <slot v-else></slot>
+    <!-- <slot v-else></slot> -->
   </component>
 </template>
 
