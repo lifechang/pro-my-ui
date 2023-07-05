@@ -18,7 +18,7 @@
           <el-button :type="btn.type" @click="btn?.callBack(formData)">{{ btn.name }}</el-button>
         </div>
       </el-form-item>
-      <slot name="footBtn" v-else></slot>
+      <slot name="footBtn" :data="formData" v-else></slot>
     </el-col>
   </el-form>
 </template>

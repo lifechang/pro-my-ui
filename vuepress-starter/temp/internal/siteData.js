@@ -16,23 +16,6 @@ export const siteData = {
   ],
   "pages": [
     {
-      "title": "安装",
-      "frontmatter": {
-        "title": "安装"
-      },
-      "regularPath": "/component/installation/installation.html",
-      "relativePath": "component/installation/installation.md",
-      "key": "v-52daa784",
-      "path": "/component/installation/installation.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "NPM安装",
-          "slug": "npm安装"
-        }
-      ]
-    },
-    {
       "frontmatter": {
         "home": false,
         "actionText": "开始使用",
@@ -49,67 +32,6 @@ export const siteData = {
       "relativePath": "README.md",
       "key": "v-1ac5d586",
       "path": "/"
-    },
-    {
-      "title": "MyForm表单",
-      "frontmatter": {
-        "title": "MyForm表单"
-      },
-      "regularPath": "/component/form/form.html",
-      "relativePath": "component/form/form.md",
-      "key": "v-4b5fb13e",
-      "path": "/component/form/form.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        },
-        {
-          "level": 3,
-          "title": "ProForm(属性)",
-          "slug": "proform-属性"
-        },
-        {
-          "level": 3,
-          "title": "setFormConfig(表单列表结构)",
-          "slug": "setformconfig-表单列表结构"
-        }
-      ]
-    },
-    {
-      "title": "快速上手",
-      "frontmatter": {
-        "title": "快速上手"
-      },
-      "regularPath": "/component/quickstart/quickstart.html",
-      "relativePath": "component/quickstart/quickstart.md",
-      "key": "v-1c28f104",
-      "path": "/component/quickstart/quickstart.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "引入pro-my-ui",
-          "slug": "引入pro-my-ui"
-        }
-      ]
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/test/test.html",
-      "relativePath": "component/test/test.md",
-      "key": "v-1af3893e",
-      "path": "/component/test/test.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        }
-      ]
     },
     {
       "title": "MyTable表格",
@@ -150,6 +72,99 @@ export const siteData = {
           "level": 3,
           "title": "ProTable 插槽",
           "slug": "protable-插槽"
+        }
+      ]
+    },
+    {
+      "title": "安装",
+      "frontmatter": {
+        "title": "安装"
+      },
+      "regularPath": "/component/installation/installation.html",
+      "relativePath": "component/installation/installation.md",
+      "key": "v-52daa784",
+      "path": "/component/installation/installation.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "NPM安装",
+          "slug": "npm安装"
+        }
+      ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/test/test.html",
+      "relativePath": "component/test/test.md",
+      "key": "v-1af3893e",
+      "path": "/component/test/test.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        }
+      ]
+    },
+    {
+      "title": "MyForm表单",
+      "frontmatter": {
+        "title": "MyForm表单"
+      },
+      "regularPath": "/component/form/form.html",
+      "relativePath": "component/form/form.md",
+      "key": "v-4b5fb13e",
+      "path": "/component/form/form.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        },
+        {
+          "level": 3,
+          "title": "ProForm(属性)",
+          "slug": "proform-属性"
+        },
+        {
+          "level": 3,
+          "title": "setFormConfig(表单配置)",
+          "slug": "setformconfig-表单配置"
+        },
+        {
+          "level": 3,
+          "title": "formList(表单列表结构)",
+          "slug": "formlist-表单列表结构"
+        },
+        {
+          "level": 3,
+          "title": "formBtn(表单列表结构)",
+          "slug": "formbtn-表单列表结构"
+        },
+        {
+          "level": 3,
+          "title": "ProForm(插槽)",
+          "slug": "proform-插槽"
+        }
+      ]
+    },
+    {
+      "title": "快速上手",
+      "frontmatter": {
+        "title": "快速上手"
+      },
+      "regularPath": "/component/quickstart/quickstart.html",
+      "relativePath": "component/quickstart/quickstart.md",
+      "key": "v-1c28f104",
+      "path": "/component/quickstart/quickstart.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "引入pro-my-ui",
+          "slug": "引入pro-my-ui"
         }
       ]
     }
