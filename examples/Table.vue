@@ -11,6 +11,14 @@
       </template>
       <template #usernameHeader> 111222 </template>
       <template #username>22223</template>
+      <template #genderSearch="scope">
+        <el-input v-model="scope.data[scope.row.prop]"></el-input>
+        <!-- <el-switch
+          v-model="scope.searchParam[scope.row.prop]"
+          active-text="全部"
+          inactive-text="个人">
+        </el-switch> -->
+      </template>
       <template #status> {{ 2222 }}</template>
       <!-- createTime -->
       <template #createTime> 3434 </template>
@@ -48,7 +56,7 @@ export default {
               label: "性别",
               width: 100,
               enum: [],
-              search: { el: "select", props: { filterable: true } },
+              search: { el: "custom", defaultValue: '1123', },
               fieldNames: { label: "genderLabel", value: "genderValue" },
             },
             {

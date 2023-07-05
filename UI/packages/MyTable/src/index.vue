@@ -8,7 +8,11 @@
       :search-param="searchParam"
       :search-col="searchCol"
       v-show="isShowSearch"
-    />
+    >
+      <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
+        <slot :name="slot" :row="scope.row" :data="searchParam"></slot>
+      </template>
+    </SearchForm>
     <!-- 表格内容 card -->
     <div class="card table-main">
       <!-- 表格头部 操作按钮 -->
@@ -219,7 +223,6 @@ export default {
           this.searchParam[column.search.key ?? handleProp(column.prop)] = column.search?.defaultValue;
         }
       });
-
       // 排序搜索表单项
       this.searchColumns = this.searchColumns.sort((a, b) => a.search.order - b.search.order);
     },
@@ -231,6 +234,7 @@ export default {
       try {
         // 先把初始化参数和分页参数放到总参数里面
         Object.assign(this.totalParam, this.initParam, this.pagination ? this.pageParam.value : {});
+        console.log(this.totalParam);
         let { data } = await this.requestApi({
           ...this.searchInitParam,
           ...this.totalParam,
