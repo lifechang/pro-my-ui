@@ -6,9 +6,7 @@ title: MyTable表格
 
 ## 基本用法
 
-适用广泛的基础单选
-
-::: demo 适用广泛的基础单选
+::: demo 适用广泛的基础表格
 
 ```html
 <template>

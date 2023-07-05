@@ -6,7 +6,7 @@ title: MyForm表单
 
 ## 基本用法
 
-::: demo 适用广泛的基础单选
+::: demo 适用广泛的基础表单
 
 ```html
 <template>
