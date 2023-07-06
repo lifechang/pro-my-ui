@@ -10,7 +10,7 @@
       v-show="isShowSearch"
     >
       <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
-        <slot :name="slot" :row="scope.row" :data="searchParam"></slot>
+        <slot :name="slot" :row="scope.row" :data="scope.searchParam"></slot>
       </template>
     </SearchForm>
     <!-- 表格内容 card -->
@@ -209,8 +209,27 @@ export default {
   },
   mounted() {
     this.requestAuto && this.getTableList();
+    // setInterval(() => {
+    //     console.log(this.totalParam, this.searchInitParam, this.initParam, this.searchParam);
+    // }, 1000)
   },
   methods: {
+    // 扁平化 columns
+    flatColumnsFunc(columns = [], flatArr = []) {
+      columns.forEach(async (col) => {
+        if (col._children?.length) {
+          flatArr.push(...this.flatColumnsFunc(col._children));
+        }
+        flatArr.push(col);
+
+        // 给每一项 column 添加 isShow && isFilterEnum 默认属性
+        col.isShow = col.isShow ?? true;
+        col.isFilterEnum = col.isFilterEnum ?? true;
+        // 设置 enumMap
+        this.setEnumMap(col);
+      });
+      return flatArr.filter((item) => !item._children?.length);
+    },
     setColums() {
       // 过滤需要搜索的配置项
       this.searchColumns = this.flatColumns.filter((item) => item.search?.el || item.search?.render);
@@ -234,7 +253,6 @@ export default {
       try {
         // 先把初始化参数和分页参数放到总参数里面
         Object.assign(this.totalParam, this.initParam, this.pagination ? this.pageParam.value : {});
-        console.log(this.totalParam);
         let { data } = await this.requestApi({
           ...this.searchInitParam,
           ...this.totalParam,
@@ -279,22 +297,6 @@ export default {
       }
       const { data } = await col.enum();
       this.map.set(col.prop, data);
-    },
-    // 扁平化 columns
-    flatColumnsFunc(columns = [], flatArr = []) {
-      columns.forEach(async (col) => {
-        if (col._children?.length) {
-          flatArr.push(...this.flatColumnsFunc(col._children));
-        }
-        flatArr.push(col);
-
-        // 给每一项 column 添加 isShow && isFilterEnum 默认属性
-        col.isShow = col.isShow ?? true;
-        col.isFilterEnum = col.isFilterEnum ?? true;
-        // 设置 enumMap
-        this.setEnumMap(col);
-      });
-      return flatArr.filter((item) => !item._children?.length);
     },
     // 多选操作
     selectionChange(rowArr) {

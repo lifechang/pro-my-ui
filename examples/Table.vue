@@ -11,22 +11,21 @@
       </template>
       <template #usernameHeader> 111222 </template>
       <template #username>22223</template>
-      <template #genderSearch="scope">
-        <el-input v-model="scope.data[scope.row.prop]"></el-input>
-        <!-- <el-switch
-          v-model="scope.searchParam[scope.row.prop]"
+      <template #genderSearch="{data}">
+        <el-switch
+          v-model="data.gender"
           active-text="全部"
-          inactive-text="个人">
-        </el-switch> -->
+          inactive-text="个人"
+          @change="$forceUpdate()"
+          >
+        </el-switch>
       </template>
       <template #status> {{ 2222 }}</template>
       <!-- createTime -->
       <template #createTime> 3434 </template>
       <!-- 表格操作 -->
       <template #append>
-        <span style="color: var(--el-color-primary)"
-          >我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span
-        >
+        <span>我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
       </template>
       <template #operation>
         <el-button type="primary" link>删除</el-button>
@@ -49,15 +48,15 @@ export default {
           prop: "base",
           label: "基本信息",
           _children: [
-            { prop: "username", label: "用户姓名", width: 110, search: { el: "input" } },
+            { prop: "username", label: "用户姓名", width: 110, search: { el: "input", props: {} } },
             { prop: "user.detail.age", label: "年龄", width: 100 },
             {
               prop: "gender",
               label: "性别",
               width: 100,
-              enum: [],
-              search: { el: "custom", defaultValue: '1123', },
-              fieldNames: { label: "genderLabel", value: "genderValue" },
+              enum: [{label: 1111,value: 1}, {label: 222,value: 2}],
+              search: { el: "custom", defaultValue: true, props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss",onInput: () => (console.log(123)), onChange: () => (alert(1)) }, },
+              // fieldNames: { label: "genderLabel", value: "genderValue" },
             },
             {
               prop: "details",
@@ -75,7 +74,7 @@ export default {
           label: "用户状态",
           tag: true,
           enum: [],
-          search: { el: "input" },
+          search: { el: "input", defaultValue: '123' },
           fieldNames: { label: "userLabel", value: "userStatus" },
         },
         { prop: "createTime", label: "创建时间", width: 200 },
@@ -86,11 +85,16 @@ export default {
         // name: '',
         // limit: 10,
         // page: 1,
-        // status: 1
       },
     };
   },
   methods: {
+    aaa() {
+      this.$forceUpdate();
+    },
+    abc(a,b) {
+      console.log(a,b);
+    },
     getTableList() {
       return new Promise(function (resolve) {
         // 异步操做

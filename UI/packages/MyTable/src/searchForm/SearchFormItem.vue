@@ -7,8 +7,10 @@
       searchParam: _searchParam,
       clearable,
     }"
-    v-model.trim="_searchParam[column.search.key || handleProp(column.prop)]"
+    v-model="_searchParam[column.search.key || handleProp(column.prop)]"
     :data="[]"
+    @input="setMethods"
+    @change="setMethods"
     :options="['cascader', 'select-v2'].includes(column.search.el) ? columnEnum : []"
   >
     <template v-if="column.search.el === 'cascader'" #default="{ data }">
@@ -109,8 +111,21 @@ export default {
       return search?.props?.clearable ?? (search?.defaultValue === null || search?.defaultValue === undefined);
     },
   },
+  mounted() {
+    // setInterval(() => {
+    //   console.log(this._searchParam[this.column.search.key || handleProp(this.column.prop)]);
+    // }, 1000)
+  },
   methods: {
     handleProp,
+    setMethods() {
+      if (this.column.search.el === 'input') {
+        this.column.search.props?.onInput && this.column.search.props?.onInput()
+      } else {
+        this.column.search.props?.onChange && this.column.search.props?.onChange()
+      }
+      this.$forceUpdate()
+    }
   },
 };
 </script>
