@@ -316,6 +316,8 @@ title: MyForm表单
 
 </div>
 
+<div class="all-table1">
+
 ### ProForm 方法
 
 ::: tip
