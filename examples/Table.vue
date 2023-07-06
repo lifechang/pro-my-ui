@@ -11,6 +11,15 @@
       </template>
       <template #usernameHeader> 111222 </template>
       <template #username>22223</template>
+      <template #[`${`user.detail.age`}Search`]="{data}">
+        <el-switch
+          v-model="data.user"
+          active-text="全部"
+          inactive-text="个人"
+          @change="$forceUpdate()"
+          >
+        </el-switch>
+      </template>
       <template #genderSearch="{data}">
         <el-switch
           v-model="data.gender"
@@ -48,14 +57,14 @@ export default {
           prop: "base",
           label: "基本信息",
           _children: [
-            { prop: "username", label: "用户姓名", width: 110, search: { el: "input", props: {} } },
-            { prop: "user.detail.age", label: "年龄", width: 100 },
+            { prop: "username", label: "用户姓名", isShow: false, width: 110, search: { el: "input", props: {onInput: () => (console.log(2))} } },
+            { prop: "user.detail.age", label: "年龄",search: { el: "custom", props: {} } , width: 100 },
             {
               prop: "gender",
               label: "性别",
               width: 100,
               enum: [{label: 1111,value: 1}, {label: 222,value: 2}],
-              search: { el: "custom", defaultValue: true, props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss",onInput: () => (console.log(123)), onChange: () => (alert(1)) }, },
+              search: { el: "select", defaultValue: true, props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss", onChange: () => (console.log(1)) }, },
               // fieldNames: { label: "genderLabel", value: "genderValue" },
             },
             {

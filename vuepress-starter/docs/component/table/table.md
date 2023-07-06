@@ -22,6 +22,15 @@ title: MyTable表格
     </template>
     <template #nameHeader="scope"> 插槽头部 </template>
     <template #province="scope">我国{{ scope.row.province }}</template>
+    <template #[`${`user.detail.age`}Search`]="{data}">
+      <el-switch
+        v-model="data.age"
+        active-text="全部"
+        inactive-text="个人"
+        @change="$forceUpdate()"
+        >
+      </el-switch>
+    </template>
     <template #createTime="scope"> {{ scope.row.createTime }} </template>
     <!-- 表格操作 -->
     <template #operation="scope">
@@ -40,7 +49,7 @@ title: MyTable表格
           {
             prop: "name",
             label: "姓名",
-            search: { el: "input" },
+            search: { el: "input"  },
             render: (h, scope) => {
               let style = {
                 color: "green",
@@ -55,21 +64,21 @@ title: MyTable表格
             prop: "gender",
             label: "性别",
             // 字典数据
-            // 字典请求不带参数
+            // 字典请求不带参数(label/value)
             enum: [
               { genderLabel: "男", genderValue: 1 },
               { genderLabel: "女", genderValue: 0 },
             ],
             // 字典请求携带参数
             // enum: () => getUserGender({ id: 1 }),
-            search: { el: "select", props: { filterable: true } },
+            search: { el: "select",  defaultValue: 0, props: { filterable: true, onChange: () => (alert('111')) } },
             fieldNames: { label: "genderLabel", value: "genderValue" },
           },
           {
             // 多级 prop
             prop: "user.detail.age",
             label: "年龄",
-            search: { el: "input", props: { filterable: true } },
+            search: { el: "custom", },
           },
           { prop: "province", label: "省份", search: { el: "input" } },
           { prop: "city", label: "市区" },
@@ -217,8 +226,9 @@ title: MyTable表格
 | prop | 对应列内容的字段名 | string | — | — |
 | label | 显示的标题 | string | — | — |
 | type | 对应列的类型 | string | — | selection / index / expand |
-| prop | 对应列内容的字段名 | string | — | — |
+| prop | 对应列内容的字段名（注：如需调用事件方法 支持onInput/onChange） | string | — | — |
 | search | 搜索项配置 | SearchProps | — | — |
+| isShow | 列的显隐 | Boolean | — | true |
 | enum | 可格式化单元格内容，还可以作为搜索框的下拉选项（字典可以为 API 请求函数，内部会自动执行） | Object / Function | — | — |
 | isFilterEnum | 当前单元格值是否根据 enum 格式化（例如 enum 只作为搜索项数据，不参与内容格式化） | Boolean | — | true |
 | fieldNames | 指定 label && value && children 的 key 值 | Object | — | — |
@@ -283,6 +293,7 @@ ProTable 组件暴露了 el-table 实例和一些组件内部的参数和方法�
 | ---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------: |
 | column.prop | 单元格的作用域插槽 |
 | column.prop + "Header" | 表头的作用域插槽 |
+| column.prop + "Search" | 自定义搜索的作用域插槽 <font color="#dd0000">(注：如需进行修改数据操作要调用$forceUpdate()方法)</font>  |
 | pagination | 分页组件插槽 |
 | empty | 当表格数据为空时自定义的内容 |
 | append | 插入至表格最后一行之后的内容， 如果需要对表格的内容进行无限滚动操作，可能需要用到这个 slot。 若表格有合计行，该 slot 会位于合计行之上。 |

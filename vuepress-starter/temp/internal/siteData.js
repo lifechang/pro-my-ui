@@ -34,6 +34,65 @@ export const siteData = {
       "path": "/"
     },
     {
+      "title": "安装",
+      "frontmatter": {
+        "title": "安装"
+      },
+      "regularPath": "/component/installation/installation.html",
+      "relativePath": "component/installation/installation.md",
+      "key": "v-52daa784",
+      "path": "/component/installation/installation.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "NPM安装",
+          "slug": "npm安装"
+        }
+      ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/table/table.html",
+      "relativePath": "component/table/table.md",
+      "key": "v-d4201978",
+      "path": "/component/table/table.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        },
+        {
+          "level": 3,
+          "title": "ProTable（属性）",
+          "slug": "protable-属性"
+        },
+        {
+          "level": 3,
+          "title": "Column 配置",
+          "slug": "column-配置"
+        },
+        {
+          "level": 3,
+          "title": "搜索项 配置（SearchProps）",
+          "slug": "搜索项-配置-searchprops"
+        },
+        {
+          "level": 3,
+          "title": "ProTable 方法",
+          "slug": "protable-方法"
+        },
+        {
+          "level": 3,
+          "title": "ProTable 插槽",
+          "slug": "protable-插槽"
+        }
+      ]
+    },
+    {
       "title": "快速上手",
       "frontmatter": {
         "title": "快速上手"
@@ -51,19 +110,19 @@ export const siteData = {
       ]
     },
     {
-      "title": "安装",
+      "title": "MyTable表格",
       "frontmatter": {
-        "title": "安装"
+        "title": "MyTable表格"
       },
-      "regularPath": "/component/installation/installation.html",
-      "relativePath": "component/installation/installation.md",
-      "key": "v-52daa784",
-      "path": "/component/installation/installation.html",
+      "regularPath": "/component/test/test.html",
+      "relativePath": "component/test/test.md",
+      "key": "v-1af3893e",
+      "path": "/component/test/test.html",
       "headers": [
         {
           "level": 2,
-          "title": "NPM安装",
-          "slug": "npm安装"
+          "title": "基本用法",
+          "slug": "基本用法"
         }
       ]
     },
@@ -111,65 +170,6 @@ export const siteData = {
           "level": 3,
           "title": "ProForm(插槽)",
           "slug": "proform-插槽"
-        }
-      ]
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/table/table.html",
-      "relativePath": "component/table/table.md",
-      "key": "v-d4201978",
-      "path": "/component/table/table.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        },
-        {
-          "level": 3,
-          "title": "ProTable（属性）",
-          "slug": "protable-属性"
-        },
-        {
-          "level": 3,
-          "title": "Column 配置",
-          "slug": "column-配置"
-        },
-        {
-          "level": 3,
-          "title": "搜索项 配置（SearchProps）",
-          "slug": "搜索项-配置-searchprops"
-        },
-        {
-          "level": 3,
-          "title": "ProTable 方法",
-          "slug": "protable-方法"
-        },
-        {
-          "level": 3,
-          "title": "ProTable 插槽",
-          "slug": "protable-插槽"
-        }
-      ]
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/test/test.html",
-      "relativePath": "component/test/test.md",
-      "key": "v-1af3893e",
-      "path": "/component/test/test.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
         }
       ]
     }
