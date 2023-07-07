@@ -7,6 +7,7 @@
       searchParam: _searchParam,
       clearable,
     }"
+    v-on="handleSearchProps"
     v-model="_searchParam[column.search.key || handleProp(column.prop)]"
     :data="[]"
     @input="setInput"

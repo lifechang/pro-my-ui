@@ -226,7 +226,7 @@ title: MyTable表格
 | prop | 对应列内容的字段名 | string | — | — |
 | label | 显示的标题 | string | — | — |
 | type | 对应列的类型 | string | — | selection / index / expand |
-| prop | 对应列内容的字段名（注：如需调用事件方法 支持onInput/onChange） | string | — | — |
+| prop | 对应列内容的字段名（注：如需调用事件方法 支持input/change） | string | — | — |
 | search | 搜索项配置 | SearchProps | — | — |
 | isShow | 列的显隐 | Boolean | — | true |
 | enum | 可格式化单元格内容，还可以作为搜索框的下拉选项（字典可以为 API 请求函数，内部会自动执行） | Object / Function | — | — |

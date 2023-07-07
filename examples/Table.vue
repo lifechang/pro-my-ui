@@ -57,14 +57,14 @@ export default {
           prop: "base",
           label: "基本信息",
           _children: [
-            { prop: "username", label: "用户姓名", isShow: false, width: 110, search: { el: "input", props: {onInput: () => (console.log(2))} } },
+            { prop: "username", label: "用户姓名", isShow: false, width: 110, search: { el: "input", defaultValue: 1111, props: {focus: () => console.log('111'), input: () => console.log('222'), } }},
             { prop: "user.detail.age", label: "年龄",search: { el: "custom", props: {} } , width: 100 },
             {
               prop: "gender",
               label: "性别",
               width: 100,
               enum: [{label: 1111,value: 1}, {label: 222,value: 2}],
-              search: { el: "select", defaultValue: true, props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss", onChange: () => (console.log(1)) }, },
+              search: { el: "select", defaultValue: true, props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss", change: () => console.log(1) }, },
               // fieldNames: { label: "genderLabel", value: "genderValue" },
             },
             {
@@ -98,12 +98,6 @@ export default {
     };
   },
   methods: {
-    aaa() {
-      this.$forceUpdate();
-    },
-    abc(a,b) {
-      console.log(a,b);
-    },
     getTableList() {
       return new Promise(function (resolve) {
         // 异步操做
