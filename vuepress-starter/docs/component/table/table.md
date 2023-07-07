@@ -108,7 +108,7 @@ title: MyTable表格
           },
           { prop: "operation", label: "操作", fixed: "right", width: 200 },
         ],
-        // 如果表格需要初始化请求参数，直接定义传给 ProTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上，改变此参数会自动刷新表格数据)
+        // 如果表格需要初始化请求参数，直接定义传给 MyTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上，改变此参数会自动刷新表格数据)
         initParam: {
           // name: '',
           // limit: 10,
@@ -127,6 +127,7 @@ title: MyTable表格
         };
       },
       async getTableList(params) {
+        console.log(params)
         return new Promise(function (resolve, reject) {
           // 异步操做
           setTimeout(function () {
@@ -196,10 +197,10 @@ title: MyTable表格
 
 <div class="all-table2">
 
-### ProTable（属性）
+### MyTable（属性）
 
 ::: tip
-使用 v-bind="$attrs" 通过属性透传将 ProTable 组件属性全部透传到 el-table 上，所以我们支持 el-table 的所有 Props 属性。在此基础上，还扩展了以下 Props：
+使用 v-bind="$attrs" 通过属性透传将 MyTable 组件属性全部透传到 el-table 上，所以我们支持 el-table 的所有 Props 属性。在此基础上，还扩展了以下 Props：
 :::
 | 参数 | 说明 | 类型 | 是否必传 | 默认值 |
 | ------------ | :--------------------------------------------------------------------------------------: | ----------- | -------- | ------------------------------------- |
@@ -259,10 +260,10 @@ title: MyTable表格
 
 <div class="all-table1">
 
-### ProTable 方法
+### MyTable 方法
 
 ::: tip
-ProTable 组件暴露了 el-table 实例和一些组件内部的参数和方法：
+MyTable 组件暴露了 el-table 实例和一些组件内部的参数和方法：
 :::
 | 参数 | 说明 |
 | ------------ | :------------------------: |
@@ -284,7 +285,7 @@ ProTable 组件暴露了 el-table 实例和一些组件内部的参数和方法�
 
 <div class="all-table1">
 
-### ProTable 插槽
+### MyTable 插槽
 
 ::: tip
 使用方法：
