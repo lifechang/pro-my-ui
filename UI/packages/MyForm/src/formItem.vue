@@ -7,6 +7,7 @@
       searchParam: _searchParam,
       clearable,
     }"
+    v-on="handleSearchProps"
     v-model.trim="_searchParam"
     :data="[]"
     :options="['cascader'].includes(column.el) ? column.enum : []"

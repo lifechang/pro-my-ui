@@ -6,7 +6,7 @@
           v-bind="RowList.cols"
           v-for="(item, itemIndex) in items"
           :key="itemIndex"
-          :span="item.span || 24 / items?.length"
+          :span="setSpan(items, item)"
         >
           <template v-if="!item.noShow">
             <slot
@@ -88,6 +88,11 @@ export default {
     },
   },
   computed: {
+    setSpan: () => {
+      return (items, item) => {
+        return items.filter((v) => !v.noShow).length === items.length ? (item.span || (24 / items.length)) : (!item.noShow ? (24 / items.filter((v) => !v.noShow).length) : 0)
+      }
+    },
     isTowLevel: () => {
       return (val) => {
         val.formList?.flat(2).forEach((v) => {

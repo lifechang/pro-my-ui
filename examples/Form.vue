@@ -17,6 +17,30 @@ export default {
   components: {},
   data() {
     return {
+      setFormData: {
+        region: '',
+        name: "123",
+        time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
+        list: [
+          {
+            name: "",
+            info: {
+              status: true,
+            },
+            // city: "",
+          },
+        ],
+        list2: [
+          {
+            name: "小明",
+            detail: {
+              info: {
+                phone: "",
+              },
+            },
+          },
+        ],
+      },
       setFormConfig: {
         gutter: 0,
         // cols: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12 },
@@ -39,7 +63,14 @@ export default {
               label: "活动区域:",
               value: "region",
               el: "select",
-              span: 8,
+              // noShow: true,
+              props: {
+                change: (a) => {
+                  this.setFormConfig.formList[1][1].noShow = a === 'shanghai'
+                  console.log(a, )
+                }
+              },
+              span: 6,
               enum: [
                 {
                   label: "区域一",
@@ -51,12 +82,19 @@ export default {
                 },
               ],
             },
+    
             {
               label: "活动时间:",
               value: "time",
-              span: 16,
+              noShow: true,
               el: "date-picker",
               props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss" },
+            },
+                  {
+              label: "1122：",
+              value: "name1",
+              span: 5,
+              el: "input",
             },
           ],
           [
@@ -168,29 +206,6 @@ export default {
             callBack: async (data) => {
               await this.$refs.myForm.resetFields();
               console.log(this.$refs.myForm.RefForm());
-            },
-          },
-        ],
-      },
-      setFormData: {
-        name: "表单验证",
-        time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
-        list: [
-          {
-            name: "",
-            info: {
-              status: true,
-            },
-            // city: "",
-          },
-        ],
-        list2: [
-          {
-            name: "小明",
-            detail: {
-              info: {
-                phone: "",
-              },
             },
           },
         ],
