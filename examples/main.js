@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./Table.vue";
 
 import {
-  Button as aButton,
+  Button,
   Pagination,
   Input,
   Select,
@@ -18,9 +18,10 @@ import {
   Row,
   Col,
   Switch,
+  Dialog
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-Vue.use(aButton);
+Vue.use(Button);
 Vue.use(Pagination);
 Vue.use(Input);
 Vue.use(Select);
@@ -36,14 +37,15 @@ Vue.use(FormItem);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Switch);
+Vue.use(Dialog);
 
 import "../UI/css/button.scss";
-import Button from "../UI/packages/button";
 import MyTable from "../UI/packages/MyTable";
 import MyForm from "../UI/packages/MyForm";
-Vue.use(Button);
+import MyDialog from "../UI/packages/MyDialog";
 Vue.use(MyTable);
 Vue.use(MyForm);
+Vue.use(MyDialog);
 
 Vue.config.productionTip = false;
 

@@ -10,7 +10,9 @@
     >
       <div style="height: 60px">1</div>
       <div style="display: flex; min-width: 800px; height: calc(100% - 60px)">
-        <div style="min-width: 180px">2</div>
+        <div style="min-width: 180px">
+          <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
+        </div>
         <MyTable
           :columns="columns"
           :request-api="getTableList"
@@ -46,11 +48,16 @@
         </MyTable>
       </div>
     </div>
+    <ShowDialog ref="ShowDialog"></ShowDialog>
   </div>
 </template>
 
 <script>
+import ShowDialog from "./Dialog.vue";
 export default {
+  components: {
+    ShowDialog
+  },
   data() {
     return {
       columns: [

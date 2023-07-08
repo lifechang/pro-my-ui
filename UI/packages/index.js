@@ -1,11 +1,11 @@
 import MyTable from "./MyTable";
-import Button from "./button";
 import MyForm from "./MyForm";
+import MyDialog from "./MyDialog";
 
 const components = {
   MyTable,
-  Button,
   MyForm,
+  MyDialog
 };
 
 const install = function (Vue) {
