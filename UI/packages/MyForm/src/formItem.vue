@@ -1,28 +1,15 @@
 <template>
-  <component
-    :is="`el-${column.el}`"
-    v-bind="{
+  <component :is="`el-${column.el}`" v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }"
-    v-on="handleSearchProps"
-    v-model.trim="_searchParam"
-    :data="[]"
-    :options="['cascader'].includes(column.el) ? column.enum : []"
-  >
+    }" v-on="handleSearchProps" v-model.trim="_searchParam" :data="[]" :options="['cascader'].includes(column.el) ? column.enum : []">
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
-      <component
-        :is="`el-option`"
-        v-for="(col, index) in column.enum"
-        :key="index"
-        :label="col[fieldNames.label]"
-        :value="col[fieldNames.value]"
-      ></component>
+      <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
     </template>
     <slot v-else></slot>
   </component>
@@ -100,40 +87,25 @@ export default {
   },
   methods: {
     dealColumn(row, key, parentKey, type, val) {
-      // value数据参数不包含(.)的
+      const data = parentKey ? row[parentKey][this.EvenIndex] : row;
+
       if (!key.includes(".")) {
-        // 二级数据set, get
-        if (parentKey) {
-          if (type === "get") {
-            return row[parentKey][this.EvenIndex][key];
-          } else {
-            this.$set(row[parentKey][this.EvenIndex], key, val);
-          }
-        }
-        // 一级数据set, get
-        if (!parentKey) {
-          if (type === "get") {
-            return row[key] ?? "";
-          } else {
-            this.$set(row, key, val);
-          }
-        }
-      }
-      // value数据参数包含(.)的
-      if (key.includes(".")) {
-        // 二级数据get, set
         if (type === "get") {
-          let res = key.split(".").reduce((pre, cur) => {
-            pre = pre?.[cur];
-            return pre;
-          }, row[parentKey][this.EvenIndex]);
-          return res;
+          return data[key] ?? "";
         } else {
-          let newObject = key.split(".").reduceRight((obj, next) => ({ [next]: obj }), val);
-          _.merge(row[parentKey][this.EvenIndex], newObject);
+          this.$set(data, key, val);
+        }
+      } else {
+        const keys = key.split(".");
+
+        if (type === "get") {
+          return keys.reduce((pre, cur) => pre?.[cur], data);
+        } else {
+          const newObject = keys.reduceRight((obj, next) => ({ [next]: obj }), val);
+          Object.assign(data, newObject);
         }
       }
-    },
+    }
   },
 };
 </script>
