@@ -156,6 +156,7 @@ export default {
             data: {
               list: [
                 {
+                  id: '1',
                   date: "2016-05-03",
                   name: "王小虎",
                   gender: 1,
@@ -171,6 +172,7 @@ export default {
                   },
                 },
                 {
+                  id: '2',
                   date: "2016-05-02",
                   name: "王小虎",
                   gender: 1,
@@ -186,6 +188,7 @@ export default {
                   },
                 },
                 {
+                  id: '3',
                   date: "2016-05-04",
                   name: "王小虎",
                   gender: 1,
@@ -201,6 +204,7 @@ export default {
                   },
                 },
                 {
+                  id: '4',
                   date: "2016-05-03",
                   name: "王小虎",
                   gender: 1,
@@ -216,6 +220,7 @@ export default {
                   },
                 },
                 {
+                  id: '5',
                   date: "2016-05-02",
                   name: "王小虎",
                   gender: 1,
@@ -231,6 +236,7 @@ export default {
                   },
                 },
                 {
+                  id: '6',
                   date: "2016-05-04",
                   name: "王小虎",
                   gender: 1,
@@ -246,6 +252,7 @@ export default {
                   },
                 },
                 {
+                  id: '7',
                   date: "2016-05-03",
                   name: "王小虎",
                   gender: 1,
@@ -261,6 +268,7 @@ export default {
                   },
                 },
                 {
+                  id: '8',
                   date: "2016-05-02",
                   name: "王小虎",
                   gender: 1,
@@ -276,6 +284,7 @@ export default {
                   },
                 },
                  {
+                  id: '9',
                   date: "2016-05-03",
                   name: "王小虎",
                   gender: 1,
@@ -291,6 +300,7 @@ export default {
                   },
                 },
                 {
+                  id: '10',
                   date: "2016-05-02",
                   name: "王小虎",
                   gender: 1,
@@ -304,37 +314,7 @@ export default {
                       age: 19,
                     },
                   },
-                },
-                {
-                  date: "2016-05-04",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 20,
-                    },
-                  },
-                },
-                {
-                  date: "2016-05-03",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 18,
-                    },
-                  },
-                },
+                }
               ],
               pageNum: 1,
               pageSize: 10,

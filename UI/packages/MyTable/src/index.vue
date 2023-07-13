@@ -43,7 +43,7 @@
             <el-table-column
               v-bind="item"
               :align="item.align || 'center'"
-              :key="1 - `${index}`"
+              :key="`${index}`"
               :reserve-selection="item.type == 'selection'"
               v-if="
                 item.type &&
@@ -60,7 +60,7 @@
             <!-- other -->
             <TableColumn
               v-if="!item.type && item.prop && item.isShow"
-              :key="1 - `${index}`"
+              :key="`${index}`"
               :column="item"
             >
               <template
@@ -172,7 +172,7 @@ export default {
     // 当前选中的所有 ids 数组
     selectedListIds() {
       let ids = [];
-      this.selectedList.forEach((item) => ids.push(item[this.rowKey]));
+      this.selectedList?.forEach((item) => ids.push(item[this.rowKey]));
       return ids;
     },
   },
@@ -330,7 +330,7 @@ export default {
     },
     // 多选操作
     selectionChange(rowArr) {
-      this.selectedList = rowArr.length && rowArr;
+      this.selectedList = rowArr;
     },
     search() {
       this.pageable.pageNum = 1;
