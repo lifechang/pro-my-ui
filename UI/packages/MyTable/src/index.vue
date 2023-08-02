@@ -1,14 +1,7 @@
 <template>
   <div class="table-box">
     <!-- 查询表单 card -->
-    <SearchForm
-      :search="search"
-      :reset="reset"
-      :columns="searchColumns"
-      :search-param="searchParam"
-      :search-col="searchCol"
-      v-show="isShowSearch"
-    >
+    <SearchForm :search="search" :reset="reset" :columns="searchColumns" :search-param="searchParam" :search-col="searchCol" v-show="isShowSearch">
       <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
         <slot :name="slot" :row="scope.row" :data="scope.searchParam"></slot>
       </template>
@@ -18,38 +11,21 @@
       <!-- 表格头部 操作按钮 -->
       <div class="table-header">
         <div class="header-button-lf">
-          <slot
-            name="tableHeader"
-            :selectedListIds="selectedListIds"
-            :selectedList="selectedList"
-          />
+          <slot name="tableHeader" :selectedListIds="selectedListIds" :selectedList="selectedList" />
         </div>
         <!-- <div class="header-button-ri">1123</div> -->
       </div>
       <!-- 表格主体 -->
       <div class="table-container">
-        <el-table
-          ref="tableRef"
-          v-bind="$attrs"
-          :data="tableData"
-          :border="border"
-          :row-key="rowKey"
-          @selection-change="selectionChange"
-        >
+        <el-table ref="tableRef" v-bind="$attrs" :data="tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
           <!-- 默认插槽 -->
           <slot></slot>
           <template v-for="(item, index) in columns">
             <!-- selection || index || expand -->
-            <el-table-column
-              v-bind="item"
-              :align="item.align || 'center'"
-              :key="`${index}`"
-              :reserve-selection="item.type == 'selection'"
-              v-if="
+            <el-table-column v-bind="item" :align="item.align || 'center'" :key="`${index}`" :reserve-selection="item.type == 'selection'" v-if="
                 item.type &&
                 ['selection', 'index', 'expand'].includes(item.type)
-              "
-            >
+              ">
               <template #default="scope" v-if="item.type == 'expand'">
                 <component :is="item.render" v-bind="scope" v-if="item.render">
                 </component>
@@ -58,15 +34,8 @@
             </el-table-column>
 
             <!-- other -->
-            <TableColumn
-              v-if="!item.type && item.prop && item.isShow"
-              :key="`${index}`"
-              :column="item"
-            >
-              <template
-                v-for="slot in Object.keys($scopedSlots)"
-                #[slot]="scope"
-              >
+            <TableColumn v-if="!item.type && item.prop && item.isShow" :key="`${index}`" :column="item">
+              <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
                 <slot :name="slot" :row="scope.row"></slot>
               </template>
             </TableColumn>
@@ -87,17 +56,7 @@
       </div>
       <!-- 分页组件 -->
       <slot name="pagination">
-        <el-pagination
-          v-if="pagination"
-          :background="true"
-          :current-page="pageable.pageNum"
-          :page-size="pageable.pageSize"
-          :page-sizes="[10, 25, 50, 100]"
-          :total="pageable.total"
-          layout="total, sizes, prev, pager, next, jumper"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        ></el-pagination>
+        <el-pagination v-if="pagination" :background="true" :current-page="pageable.pageNum" :page-size="pageable.pageSize" :page-sizes="[10, 25, 50, 100]" :total="pageable.total" layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"></el-pagination>
       </slot>
     </div>
   </div>
@@ -281,7 +240,7 @@ export default {
         Object.assign(
           this.totalParam,
           this.initParam,
-          this.pagination ? this.pageParam.value : {}
+          this.pagination ? this.pageParam : {}
         );
         let { data } = await this.requestApi({
           ...this.searchInitParam,
