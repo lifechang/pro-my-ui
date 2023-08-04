@@ -17,11 +17,9 @@ export default {
   },
   methods: {
     onShow() {
-      console.log('111');
       this.show = false
     },
     onClose() {
-      console.log('222');
       this.show = false
     },
   }

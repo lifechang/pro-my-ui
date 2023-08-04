@@ -48,7 +48,7 @@
           <template #empty>
             <div class="table-empty">
               <slot name="empty">
-                <div>暂无数据</div>
+                <el-empty :image-size="170"></el-empty>
               </slot>
             </div>
           </template>

@@ -1,25 +1,17 @@
 <template>
   <div id="app">
-    <div
-      style="
+    <div style="
         width: 100%;
         height: 100%;
         flex-direction: column;
         box-sizing: border-box;
-      "
-    >
+      ">
       <div style="height: 60px">1</div>
       <div style="display: flex; min-width: 800px; height: calc(100% - 60px)">
         <div style="min-width: 180px">
           <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
         </div>
-        <MyTable
-          :columns="columns"
-          :request-api="getTableList"
-          :init-param="initParam"
-          show-summary
-          :dataCallback="dataCallback"
-        >
+        <MyTable :columns="columns" :request-api="getTableList" :init-param="initParam" show-summary :dataCallback="dataCallback">
           <!-- 表格 header 按钮 -->
           <template #tableHeader>
             <el-button type="primary">新增用户</el-button>
@@ -27,20 +19,13 @@
           <template #nameHeader> 插槽头部 </template>
           <template #province="scope">我国{{ scope.row.province }}</template>
           <template #[`${`user.detail.age`}Search`]="{ data }">
-            <el-switch
-              v-model="data.age"
-              active-text="全部"
-              inactive-text="个人"
-              @change="$forceUpdate()"
-            >
+            <el-switch v-model="data.age" active-text="全部" inactive-text="个人" @change="$forceUpdate()">
             </el-switch>
           </template>
           <template #createTime="scope"> {{ scope.row.createTime }} </template>
           <!-- 表格操作 -->
           <template #append>
-            <span
-              >我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span
-            >
+            <span>我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
           </template>
           <template #operation>
             <el-button type="primary" link>删除</el-button>
@@ -148,7 +133,6 @@ export default {
       };
     },
     async getTableList(params) {
-      console.log(params);
       return new Promise(function (resolve) {
         // 异步操做
         setTimeout(function () {
@@ -283,7 +267,7 @@ export default {
                     },
                   },
                 },
-                 {
+                {
                   id: '9',
                   date: "2016-05-03",
                   name: "王小虎",
