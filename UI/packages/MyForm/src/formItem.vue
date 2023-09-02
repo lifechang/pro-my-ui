@@ -33,6 +33,11 @@ export default {
       data: this.searchParam,
     };
   },
+  watch: {
+    searchParam(val) {
+      this.data = val;
+    },
+  },
   computed: {
     _searchParam: {
       get() {
