@@ -12,7 +12,7 @@
         <slot :name="slot" :scope="scope"></slot>
       </template>
     </Row>
-    <el-col>
+    <el-col style="margin-top: 10px">
       <el-form-item v-if="formConfig.formBtn">
         <div style="display: inline-block; margin: 0 5px" v-for="btn in formConfig.formBtn" :key="btn.name">
           <el-button :type="btn.type" @click="btn?.callBack(formData)">{{ btn.name }}</el-button>

@@ -17,7 +17,7 @@
       </div>
       <!-- 表格主体 -->
       <div class="table-container">
-        <el-table ref="tableRef" v-bind="$attrs" :data="tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
+        <el-table ref="tableRef" v-bind="$attrs" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
           <!-- 默认插槽 -->
           <slot></slot>
           <template v-for="(item, index) in columns">
@@ -74,6 +74,9 @@ export default {
     // 请求表格数据的 api ==> 非必传
     requestApi: {
       type: Function,
+    },
+    data: {
+      type: Array,
     },
     // 是否自动执行请求 api ==> 非必传（默认为true）
     requestAuto: {

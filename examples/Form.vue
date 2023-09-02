@@ -82,7 +82,7 @@ export default {
                 },
               ],
             },
-    
+
             {
               label: "活动时间:",
               value: "time",
@@ -130,7 +130,6 @@ export default {
                   {
                     label: "城市:",
                     value: "city",
-                    span: 16,
                     el: "select",
                     enum: () => {
                       return new Promise((resolve) => {
@@ -158,37 +157,24 @@ export default {
                 ],
               ],
             },
-            {
-              label: "负责人:",
-              value: "list2",
-              el: "towLevel",
-              formList: [
-                [
-                  {
-                    // label: "姓名:",
-                    value: "name",
-                    span: 8,
-                    el: "custom",
-                  },
-                  {
-                    label: "手机号:",
-                    value: "detail.info.phone",
-                    span: 16,
-                    el: "input",
-                    props: {
-                      rules: [{ required: true, message: "请输入活动名称", trigger: "blur" }],
-                    },
-                  },
-                ],
-              ],
-            },
           ],
           [
             {
-              label: "活动地址：",
-              value: "address",
-              el: "custom",
-            },
+              label: '套餐描述：',
+              value: 'comboDesc',
+              el: 'input',
+              props: {
+                type: 'textarea',
+                rows: '3',
+                rules: [
+                  {
+                    required: true,
+                    message: '请输入套餐描述',
+                    trigger: 'blur'
+                  }
+                ]
+              }
+            }
           ],
         ],
         formBtn: [

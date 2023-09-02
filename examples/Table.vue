@@ -11,7 +11,7 @@
         <div style="min-width: 180px">
           <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
         </div>
-        <MyTable :columns="columns" :request-api="getTableList" :init-param="initParam" show-summary :dataCallback="dataCallback">
+        <MyTable :columns="columns" :data="[]" :requestAuto="false" :init-param="initParam" show-summary :dataCallback="dataCallback">
           <!-- 表格 header 按钮 -->
           <template #tableHeader>
             <el-button type="primary">新增用户</el-button>
@@ -133,6 +133,7 @@ export default {
       };
     },
     async getTableList(params) {
+      alert(1)
       return new Promise(function (resolve) {
         // 异步操做
         setTimeout(function () {
