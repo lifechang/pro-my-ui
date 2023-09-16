@@ -46,11 +46,19 @@ export default {
   data() {
     return {
       refForm: this.$refs.formRef,
-      formData: {},
+      // formData: {},
       formConfig: {},
     };
   },
+  computed: {
+    formData() {
+      return this.setFormData
+    }
+  },
   watch: {
+    // formData() {
+    //   this.setDataList();
+    // },
     setFormConfig: {
       handler(val) {
         this.setDataList();
@@ -59,13 +67,15 @@ export default {
       deep: true,
       immediate: true,
     },
-    setFormData: {
-      handler(val) {
-        this.formData = deepClone(val);
-      },
-      deep: true,
-      immediate: true,
-    },
+    // setFormData: {
+    //   handler(val) {
+    //     console.log(val)
+    //     this.formData = deepClone(val);
+    //     console.log(this.formData)
+    //   },
+    //   deep: true,
+    //   immediate: true,
+    // },
   },
   methods: {
     setDataList() {

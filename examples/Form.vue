@@ -20,6 +20,7 @@ export default {
       setFormData: {
         region: '',
         name: "123",
+        name1: '',
         time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
         list: [
           {
@@ -40,6 +41,7 @@ export default {
             },
           },
         ],
+        comboDesc: ''
       },
       setFormConfig: {
         gutter: 0,

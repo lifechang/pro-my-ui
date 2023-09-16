@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from "./Table.vue";
+import App from "./Form.vue";
 
 import {
   Button,
