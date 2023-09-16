@@ -1,5 +1,6 @@
 <template>
   <el-form
+    class="my-form"
     ref="formRef"
     v-bind="{
       ...$attrs,
@@ -115,4 +116,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "UI/css/form.scss";
+</style>

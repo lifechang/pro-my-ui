@@ -11,7 +11,7 @@
         <div style="min-width: 180px">
           <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
         </div>
-        <MyTable :columns="columns" :data="[]" :requestAuto="false" :init-param="initParam" show-summary :dataCallback="dataCallback">
+        <MyTable :columns="columns" :requestApi="getTableList" :init-param="initParam" show-summary :dataCallback="dataCallback">
           <!-- 表格 header 按钮 -->
           <template #tableHeader>
             <el-button type="primary">新增用户</el-button>
@@ -302,8 +302,8 @@ export default {
                 }
               ],
               pageNum: 1,
-              pageSize: 10,
-              total: 3,
+              pageSize: 3,
+              total: 10,
             },
           });
         }, 1000);

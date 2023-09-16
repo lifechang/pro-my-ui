@@ -1,5 +1,5 @@
 // * card 卡片样式
-.card {
+.my-card {
     box-sizing: border-box;
     padding: 20px;
     overflow-x: hidden;
@@ -7,6 +7,11 @@
     border: 1px solid #e4e7ed;
     border-radius: 4px;
     box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+}
+
+.no-card {
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .table-box {
