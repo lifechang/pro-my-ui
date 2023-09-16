@@ -184,6 +184,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    // 表格 api 请求错误监听 ==> 非必传
+    requestError: {
+      type: Function,
+    }
   },
   computed: {
     // 分页查询参数(只包括分页和表格字段排序,其他排序方式可自行配置)
@@ -311,6 +315,9 @@ export default {
       Object.assign(this.pageable, resPageable);
     },
     async getTableList() {
+      if (!this.requestApi) {
+        return
+      }
       try {
         // 先把初始化参数和分页参数放到总参数里面
         Object.assign(
@@ -335,7 +342,7 @@ export default {
             total,
           });
       } catch (error) {
-        console.error(error);
+        this.requestError && this.requestError(error)
       }
     },
     /**
@@ -397,7 +404,7 @@ export default {
       this.pageable.pageNum = 1;
       this.updatedTotalParam();
       this.getTableList();
-      this.$emits("search");
+      this.$emit("search");
     },
     reset() {
       this.pageable.pageNum = 1;
@@ -405,7 +412,7 @@ export default {
       this.searchParam = { ...this.searchInitParam };
       this.updatedTotalParam();
       this.getTableList();
-      this.$emits("reset");
+      this.$emit("reset");
     },
     /**
      * @description 更新查询参数

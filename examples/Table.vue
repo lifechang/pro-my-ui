@@ -133,7 +133,6 @@ export default {
       };
     },
     async getTableList(params) {
-      alert(1)
       return new Promise(function (resolve) {
         // 异步操做
         setTimeout(function () {
