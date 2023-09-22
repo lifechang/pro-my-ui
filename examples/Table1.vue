@@ -13,6 +13,7 @@
         </div>
         <MyTable :columns="columns" :data="data" :init-param="initParam">
           <template #tableHeader>
+            <el-input  placeholder="11"></el-input>
             <el-button type="primary" @click="add">新增用户</el-button>
             <el-button type="primary" @click="log">新增用户</el-button>
           </template>
@@ -48,7 +49,7 @@ export default {
           prop: "name",
           label: "姓名",
           edit: {
-            lineShow: true,
+            // lineShow: true,
             placeholder: 'aaaaaaaaa'
           },
         },
@@ -57,7 +58,7 @@ export default {
           label: "性别",
           edit: {
             // lineShow: true,
-            placeholder: 'aaaaaaaaa'
+            placeholder: '1123'
           },
         },
         { prop: "operation", label: "操作", fixed: "right", width: 200 },
@@ -73,8 +74,8 @@ export default {
   methods: {
     add() {
       this.data.push({
-        name: '1',
-        gender: '2',
+        // name: '1',
+        // gender: '2',
         // show: false
         // name1Show: false
       })

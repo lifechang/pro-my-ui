@@ -21,7 +21,9 @@
     <template slot-scope="scope">
       <template v-if="column.edit">
         <CustomComponent v-show="isShow(scope, column)" :config="column" :searchParam="scope.row" @myBlur="onShow(scope, column, false)"></CustomComponent>
-        <div v-show="!isShow(scope, column)" @click.stop="onShow(scope, column, true)">{{ scope.row[column.edit.key || column.prop] }}</div>
+        <div class="edInp" @click.stop="onShow(scope, column, true)">
+          <el-input v-show="!isShow(scope, column)" v-model="scope.row[column.edit.key || column.prop]" placeholder="请输入"></el-input>
+        </div>
       </template>
       <template v-else>
         <div v-if="column.render">
@@ -101,11 +103,9 @@ export default {
   computed: {
     isShow: () => {
       return (scope, column) => {
-        // console.log(column, scope.row[`${column.edit.key || column.prop}Show`]);
-        // console.log(column.edit?.lineShow ? true : scope.row[`${column.edit.key || column.prop}Show`]);
-        return column.edit?.lineShow ? true : scope.row[`${column.edit.key || column.prop}Show`]
+        return column.edit?.lineShow ? scope.row.show : scope.row[`${column.edit.key || column.prop}Show`]
       }
-    }
+    },
   },
   methods: {
     // 渲染表格数据
@@ -119,17 +119,16 @@ export default {
         : formatValue(handleRowAccordingToProp(scope.row, item.prop));
     },
     onShow(scope, column, type) {
-      let key = `${column.edit.key || column.prop}Show`
-      if (key) {
-        this.$set(scope.row, key, type)
-        console.log(scope, column, type, 1);
+      if (column.edit.lineShow) {
+          this.$set(scope.row, 'show', type)
       } else {
-        this.$set(scope.row, 'show', type)
-        console.log(scope, column, type, 2);
+          this.$set(scope.row, `${column.edit.key || column.prop}Show`, type)
       }
     }
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@import "UI/css/table.scss";
+</style>

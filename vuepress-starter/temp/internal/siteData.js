@@ -16,6 +16,41 @@ export const siteData = {
   ],
   "pages": [
     {
+      "title": "快速上手",
+      "frontmatter": {
+        "title": "快速上手"
+      },
+      "regularPath": "/component/quickstart/quickstart.html",
+      "relativePath": "component/quickstart/quickstart.md",
+      "key": "v-1c28f104",
+      "path": "/component/quickstart/quickstart.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "引入pro-my-ui",
+          "slug": "引入pro-my-ui"
+        }
+      ]
+    },
+    {
+      "frontmatter": {
+        "home": false,
+        "actionText": "开始使用",
+        "actionLink": "/pages/test/",
+        "features": [
+          {
+            "title": "heaven-UI",
+            "details": "一套基于 Vue.js 的高质量UI 组件库"
+          }
+        ],
+        "footer": "MIT Licensed | COPYRIGHT ©"
+      },
+      "regularPath": "/",
+      "relativePath": "README.md",
+      "key": "v-1ac5d586",
+      "path": "/"
+    },
+    {
       "title": "安装",
       "frontmatter": {
         "title": "安装"
@@ -29,6 +64,48 @@ export const siteData = {
           "level": 2,
           "title": "NPM安装",
           "slug": "npm安装"
+        }
+      ]
+    },
+    {
+      "title": "MyTable表格",
+      "frontmatter": {
+        "title": "MyTable表格"
+      },
+      "regularPath": "/component/table/table.html",
+      "relativePath": "component/table/table.md",
+      "key": "v-d4201978",
+      "path": "/component/table/table.html",
+      "headers": [
+        {
+          "level": 2,
+          "title": "基本用法",
+          "slug": "基本用法"
+        },
+        {
+          "level": 3,
+          "title": "MyTable（属性）",
+          "slug": "mytable-属性"
+        },
+        {
+          "level": 3,
+          "title": "Column 配置",
+          "slug": "column-配置"
+        },
+        {
+          "level": 3,
+          "title": "搜索项 配置（SearchProps）",
+          "slug": "搜索项-配置-searchprops"
+        },
+        {
+          "level": 3,
+          "title": "MyTable 方法",
+          "slug": "mytable-方法"
+        },
+        {
+          "level": 3,
+          "title": "MyTable 插槽",
+          "slug": "mytable-插槽"
         }
       ]
     },
@@ -76,83 +153,6 @@ export const siteData = {
           "level": 3,
           "title": "MyForm(插槽)",
           "slug": "myform-插槽"
-        }
-      ]
-    },
-    {
-      "frontmatter": {
-        "home": false,
-        "actionText": "开始使用",
-        "actionLink": "/pages/test/",
-        "features": [
-          {
-            "title": "heaven-UI",
-            "details": "一套基于 Vue.js 的高质量UI 组件库"
-          }
-        ],
-        "footer": "MIT Licensed | COPYRIGHT ©"
-      },
-      "regularPath": "/",
-      "relativePath": "README.md",
-      "key": "v-1ac5d586",
-      "path": "/"
-    },
-    {
-      "title": "MyTable表格",
-      "frontmatter": {
-        "title": "MyTable表格"
-      },
-      "regularPath": "/component/table/table.html",
-      "relativePath": "component/table/table.md",
-      "key": "v-d4201978",
-      "path": "/component/table/table.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "基本用法",
-          "slug": "基本用法"
-        },
-        {
-          "level": 3,
-          "title": "MyTable（属性）",
-          "slug": "mytable-属性"
-        },
-        {
-          "level": 3,
-          "title": "Column 配置",
-          "slug": "column-配置"
-        },
-        {
-          "level": 3,
-          "title": "搜索项 配置（SearchProps）",
-          "slug": "搜索项-配置-searchprops"
-        },
-        {
-          "level": 3,
-          "title": "MyTable 方法",
-          "slug": "mytable-方法"
-        },
-        {
-          "level": 3,
-          "title": "MyTable 插槽",
-          "slug": "mytable-插槽"
-        }
-      ]
-    },
-    {
-      "title": "快速上手",
-      "frontmatter": {
-        "title": "快速上手"
-      },
-      "regularPath": "/component/quickstart/quickstart.html",
-      "relativePath": "component/quickstart/quickstart.md",
-      "key": "v-1c28f104",
-      "path": "/component/quickstart/quickstart.html",
-      "headers": [
-        {
-          "level": 2,
-          "title": "引入pro-my-ui",
-          "slug": "引入pro-my-ui"
         }
       ]
     },
