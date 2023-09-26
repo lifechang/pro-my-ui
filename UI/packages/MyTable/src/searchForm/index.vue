@@ -2,8 +2,8 @@
   <div v-if="columns.length" class="my-card table-search">
     <el-form ref="formRef" :model="searchParam">
       <Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
-        <GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
-          <slot v-if="item.search.el === 'custom'" :name="`${item.prop}Search`" :row="item" :search-param="searchParam" />
+        <GridItem v-for="(item, index) in columns" :key="handleProp(item.prop)" v-bind="getResponsive(item)" :index="index">
+          <slot v-if="item.search.el === 'custom'" :name="`${handleProp(item.prop)}Search`" :row="item" :search-param="searchParam" />
           <el-form-item v-else :label="`${item.label} :`">
             <SearchFormItem :column="item" :search-param="searchParam" />
           </el-form-item>
@@ -27,6 +27,7 @@
 import SearchFormItem from "./SearchFormItem.vue";
 import Grid from "../grid/index.vue";
 import GridItem from "../grid/gridItem.vue";
+import { handleProp } from '../util';
 
 export default {
   name: "searchForm",
@@ -97,6 +98,7 @@ export default {
     this.isMounted = true;
   },
   methods: {
+    handleProp,
     // 获取响应式设置
     getResponsive(item) {
       return {

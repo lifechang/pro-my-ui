@@ -18,7 +18,7 @@
           </template>
           <template #nameHeader> 插槽头部 </template>
           <template #province="scope">我国{{ scope.row.province }}</template>
-          <template #[`${`user.detail.age`}Search`]="{ data }">
+          <template #ageSearch="{ data }">
             <el-switch v-model="data.age" active-text="全部" inactive-text="个人" @change="$forceUpdate()">
             </el-switch>
           </template>

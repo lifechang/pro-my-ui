@@ -34,12 +34,12 @@
             :row="scope.row"
           ></DxpandDom>
         </div>
-        <template v-else-if="$scopedSlots[column.prop]">
-          <slot :name="column.prop" :row="scope.row" />
+        <template v-else-if="$scopedSlots[handleProp(column.prop)]">
+          <slot :name="handleProp(column.prop)" :row="scope.row" />
         </template>
-        <div v-else>
+        <template v-else>
           {{ renderCellData(column, scope) }}
-        </div>
+        </template>
       </template>
     </template>
     <template slot="header" slot-scope="scope">
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { filterEnum, formatValue, handleRowAccordingToProp } from "./util";
+import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from "./util";
 import CustomComponent from './component.vue';
 
 export default {
@@ -108,6 +108,7 @@ export default {
     },
   },
   methods: {
+    handleProp,
     // 渲染表格数据
     renderCellData(item, scope) {
       return this.enumMap.get(item.prop) && item.isFilterEnum
