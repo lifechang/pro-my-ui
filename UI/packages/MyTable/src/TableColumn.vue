@@ -20,7 +20,7 @@
 
     <template slot-scope="scope">
       <template v-if="column.edit">
-        <CustomComponent v-show="isShow(scope, column)" :config="column" :searchParam="scope.row" @myBlur="onShow(scope, column, false)"></CustomComponent>
+        <CustomComponent v-if="isShow(scope, column)" ref="CustomComponent" :config="column" :searchParam="scope.row" @myBlur="onShow(scope, column, false)"></CustomComponent>
         <div class="edInp" @click.stop="onShow(scope, column, true)">
           <el-input v-show="!isShow(scope, column)" v-model="scope.row[column.edit.key || column.prop]" placeholder="请输入"></el-input>
         </div>
@@ -125,11 +125,22 @@ export default {
       } else {
           this.$set(scope.row, `${column.edit.key || column.prop}Show`, type)
       }
+      if (type) {
+          this.$nextTick(() => {
+            this.$refs.CustomComponent.myFocus()
+          })
+      }
     }
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
+.edInp {
+  .el-input__inner {
+      border: 0;
+      background: transparent;
+  }
+}
 @import "UI/css/table.scss";
 </style>

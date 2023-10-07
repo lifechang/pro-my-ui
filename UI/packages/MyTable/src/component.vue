@@ -1,9 +1,9 @@
 <template>
-  <component :is="`el-${config.edit.el || 'input'}`"  v-bind="{
+  <component :is="`el-${config.edit.el || 'input'}`" ref="myInput" v-bind="{
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }" @blur="myBlur" v-model="_searchParam[config.edit.key || config.prop]">
+    }" @blur="myBlur" :id="`myInput_${config.edit.key || config.prop}`" v-model="_searchParam[config.edit.key || config.prop]">
   </component>
 </template>
 
@@ -16,9 +16,6 @@ export default {
     searchParam: {
       type: Object,
     },
-    blur: {
-      type: Function
-    }
   },
   computed: {
     _searchParam() {
@@ -35,6 +32,9 @@ export default {
     },
   },
   methods: {
+    myFocus() {
+      document.getElementById(`myInput_${this.config.edit.key || this.config.prop}`).focus()
+    },
     myBlur() {
       this.$emit('myBlur')
     }

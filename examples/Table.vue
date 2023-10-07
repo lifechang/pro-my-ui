@@ -18,8 +18,8 @@
           </template>
           <template #nameHeader> 插槽头部 </template>
           <template #province="scope">我国{{ scope.row.province }}</template>
-          <template #ageSearch="{ data }">
-            <el-switch v-model="data.age" active-text="全部" inactive-text="个人" @change="$forceUpdate()">
+          <template #ageSearch="{ row }">
+            <el-switch v-model="row.age" active-text="全部" inactive-text="个人" @change="aaa">
             </el-switch>
           </template>
           <template #createTime="scope"> {{ scope.row.createTime }} </template>
@@ -51,7 +51,9 @@ export default {
         {
           prop: "name",
           label: "姓名",
-          search: { el: "input" },
+          search: { el: "input", props: {change: (val) => {
+              console.log(val);
+            }} },
           render: (h, scope) => {
             let style = {
               color: "green",
@@ -76,7 +78,9 @@ export default {
           search: {
             el: "select",
             defaultValue: 0,
-            props: { filterable: true, onChange: () => alert("111") },
+            props: { filterable: true, change: (val) => {
+              console.log(val);
+            } },
           },
           fieldNames: { label: "genderLabel", value: "genderValue" },
         },
@@ -124,6 +128,9 @@ export default {
     };
   },
   methods: {
+    aaa() {
+      console.log(1);
+    },
     dataCallback(res) {
       return {
         list: res.list,
@@ -133,6 +140,7 @@ export default {
       };
     },
     async getTableList(params) {
+      console.log(params);
       return new Promise(function (resolve) {
         // 异步操做
         setTimeout(function () {

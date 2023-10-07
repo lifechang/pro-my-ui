@@ -10,8 +10,6 @@
     v-on="handleSearchProps"
     v-model="_searchParam[column.search.key || handleProp(column.prop)]"
     :data="[]"
-    @input="setInput"
-    @change="setChange"
     :options="['cascader', 'select-v2'].includes(column.search.el) ? columnEnum : []"
   >
     <template v-if="column.search.el === 'cascader'" #default="{ data }">
@@ -114,14 +112,14 @@ export default {
   },
   methods: {
     handleProp,
-    setInput() {
-      this.column.search.props?.onInput && this.column.search.props?.onInput()
-      this.$forceUpdate()
-    },
-    setChange() {
-      this.column.search.props?.onChange && this.column.search.props?.onChange()
-      this.$forceUpdate()
-    }
+    // setInput() {
+    //   this.column.search.props?.onInput && this.column.search.props?.onInput()
+    //   this.$forceUpdate()
+    // },
+    // setChange() {
+    //   this.column.search.props?.onChange && this.column.search.props?.onChange()
+    //   this.$forceUpdate()
+    // }
   },
 };
 </script>
