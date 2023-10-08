@@ -23,7 +23,7 @@ export default {
     },
     placeholder() {
       const search = this.config?.edit;
-      const placeholder = search?.placeholder ?? (search?.el?.includes("input") ? "请输入" : "请选择");
+      const placeholder = search?.placeholder ?? (!search?.el?.includes("input") ? "请选择" : "请输入");
       return { placeholder };
     },
     clearable() {

@@ -48,6 +48,7 @@
         </div>
       </div>
       <!-- 表格主体 -->
+      <div class="table-container">
         <el-table
           ref="tableRef"
           v-bind="$attrs"
@@ -104,6 +105,7 @@
             </div>
           </template>
         </el-table>
+      </div>
       <!-- 分页组件 -->
       <slot name="pagination">
         <el-pagination

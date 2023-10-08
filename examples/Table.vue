@@ -11,22 +11,22 @@
         <div style="min-width: 180px">
           <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
         </div>
-        <MyTable :columns="columns" :requestApi="getTableList" :init-param="initParam" show-summary :dataCallback="dataCallback">
+        <MyTable :columns="columns" :requestApi="getTableList" :init-param="initParam"  :dataCallback="dataCallback">
           <!-- 表格 header 按钮 -->
           <template #tableHeader>
             <el-button type="primary">新增用户</el-button>
           </template>
           <template #nameHeader> 插槽头部 </template>
           <template #province="scope">我国{{ scope.row.province }}</template>
-          <template #ageSearch="{ row }">
-            <el-switch v-model="row.age" active-text="全部" inactive-text="个人" @change="aaa">
+          <template #ageSearch>
+            <el-switch v-model="initParam.age" active-text="全部" inactive-text="个人" @change="aaa">
             </el-switch>
           </template>
           <template #createTime="scope"> {{ scope.row.createTime }} </template>
           <!-- 表格操作 -->
-          <template #append>
+          <!-- <template #append>
             <span>我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
-          </template>
+          </template> -->
           <template #operation>
             <el-button type="primary" link>删除</el-button>
           </template>
@@ -47,11 +47,13 @@ export default {
     return {
       columns: [
         { type: "selection", fixed: "left", width: 80 },
-        { type: "index", label: "#", width: 80 },
+        { type: "index", label: "#", fixed: "left", width: 80 },
         {
           prop: "name",
           label: "姓名",
-          search: { el: "input", props: {change: (val) => {
+          search: {
+            el: "input",
+            props: {change: (val) => {
               console.log(val);
             }} },
           render: (h, scope) => {
@@ -88,7 +90,9 @@ export default {
           // 多级 prop
           prop: "user.detail.age",
           label: "年龄",
-          search: { el: "custom" },
+          search: { el: "custom",
+            defaultValue: false,
+          },
         },
         { prop: "province", label: "省份", search: { el: "input" } },
         { prop: "city", label: "市区" },
@@ -116,7 +120,7 @@ export default {
             defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
           },
         },
-        { prop: "operation", label: "操作", fixed: "right", width: 200 },
+        { prop: "operation", label: "操作", fixed: "right", width: 200, },
       ],
       // 如果表格需要初始化请求参数，直接定义传给 MyTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上，改变此参数会自动刷新表格数据)
       initParam: {
@@ -128,8 +132,8 @@ export default {
     };
   },
   methods: {
-    aaa() {
-      console.log(1);
+    aaa(val) {
+      console.log(val);
     },
     dataCallback(res) {
       return {
@@ -140,7 +144,6 @@ export default {
       };
     },
     async getTableList(params) {
-      console.log(params);
       return new Promise(function (resolve) {
         // 异步操做
         setTimeout(function () {
@@ -309,8 +312,8 @@ export default {
                 }
               ],
               pageNum: 1,
-              pageSize: 3,
-              total: 10,
+              pageSize: 10,
+              total: 100,
             },
           });
         }, 1000);
