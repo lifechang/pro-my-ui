@@ -212,6 +212,9 @@ export default {
       if (!this.data) {
         return this.tableData;
       }
+      if (!this.pagination) {
+        return this.data;
+      }
       return this.data.slice(
         (this.pageable.pageNum - 1) * this.pageable.pageSize,
         this.pageable.pageSize * this.pageable.pageNum
@@ -391,6 +394,9 @@ export default {
       if (typeof enumValue !== "function") {
         return this.map.set(prop, enumValue);
       }
+
+      // 为了防止接口执行慢，而存储慢，导致重复请求，所以预先存储为[],接口返回后再二次存储
+      this.map.set(prop, []);
 
       // 当前 enum 为后台数据需要请求数据，则调用该请求接口，并存储到 enumMap
       const { data } = await enumValue();
