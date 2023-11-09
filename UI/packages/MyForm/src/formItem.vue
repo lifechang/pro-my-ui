@@ -1,15 +1,18 @@
 <template>
-  <component :is="`el-${column.el}`" v-bind="{
+  <component :is="column?.render ?? `el-${column.el}`" v-bind="{
       ...handleSearchProps,
       ...placeholder,
       searchParam: _searchParam,
       clearable,
-    }" v-on="handleSearchProps" v-model.trim="_searchParam" :data="[]" :options="['cascader'].includes(column.el) ? column.enum : []">
+    }" v-on="handleSearchProps" v-model.trim="_searchParam" :data="[]" :options="['cascader', 'my-tree-select'].includes(column?.render ?? column.el) ? column.enum : []">
     <template v-if="column.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
     </template>
     <template v-if="column.el === 'select'">
       <component :is="`el-option`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.label]" :value="col[fieldNames.value]"></component>
+    </template>
+    <template v-if="column.el === 'radio-group'">
+      <component :is="`el-radio`" v-for="(col, index) in column.enum" :key="index" :label="col[fieldNames.value]">{{ col[fieldNames.label] }}</component>
     </template>
     <slot v-else></slot>
   </component>

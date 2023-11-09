@@ -1,11 +1,14 @@
 import MyTable from "./MyTable";
 import MyForm from "./MyForm";
 import MyDialog from "./MyDialog";
+import MyTreeSelect from "./MyTreeSelect";
+
 
 const components = {
   MyTable,
   MyForm,
-  MyDialog
+  MyDialog,
+  MyTreeSelect
 };
 
 const install = function (Vue) {
