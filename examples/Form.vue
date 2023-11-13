@@ -5,7 +5,7 @@
         <div>我是插槽{{ scope.data.data[scope.parentItem.value][scope.index][scope.data.item.value] }}</div>
       </template>
       <template #address="{ scope }">
-        <div>{{ scope.data[scope.item.value] }}707办公室</div>
+        <div>{{ scope.data[scope.item.value] }}707办公室1</div>
       </template>
     </MyForm>
   </div>
@@ -19,7 +19,7 @@ export default {
     return {
       setFormData: {
         region: '',
-        name: "123",
+        name: "",
         name1: '',
         comboDesc1: '',
         time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
@@ -27,7 +27,7 @@ export default {
           {
             name: "",
             info: {
-              status: true,
+              status: false,
             },
             // city: "",
           },
@@ -42,7 +42,8 @@ export default {
             },
           },
         ],
-        comboDesc: ''
+        comboDesc: '',
+        isLink: true
       },
       setFormConfig: {
         gutter: 0,
@@ -66,11 +67,12 @@ export default {
               label: "活动区域:",
               value: "region",
               el: "select",
-              // noShow: true,
+              isHidden: (aa) => {
+                return aa.name === ''
+              },
               props: {
                 change: (a) => {
-                  this.setFormConfig.formList[1][1].noShow = a === 'shanghai'
-                  console.log(a, )
+                  console.log(a)
                 }
               },
               span: 6,
@@ -89,11 +91,10 @@ export default {
             {
               label: "活动时间:",
               value: "time",
-              noShow: true,
               el: "date-picker",
               props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss" },
             },
-                  {
+            {
               label: "1122：",
               value: "name1",
               span: 5,

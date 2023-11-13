@@ -97,7 +97,7 @@ export default {
               }
             }
             Object.assign(this.setFormData, { [level2.value]: [newObj] });
-          } else if (!this.setFormData[level2.value]) {
+          } else if (!this.setFormData.hasOwnProperty(level2.value)) {
             Object.assign(this.setFormData, { [level2.value]: undefined });
           }
         }

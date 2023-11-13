@@ -6,9 +6,9 @@
           v-bind="RowList.cols"
           v-for="(item, itemIndex) in items"
           :key="itemIndex"
-          :span="setSpan(items, item)"
+          :span="setSpan(items, item, RowData)"
         >
-          <template v-if="!item.noShow">
+          <template v-if="getShow(RowData, item)">
             <slot
               v-if="item.el === 'custom' && !item.label"
               :name="item.parentValue ? `${[item.parentValue]}.${[item.value]}` : item.value"
@@ -88,9 +88,16 @@ export default {
     },
   },
   computed: {
-    setSpan: () => {
-      return (items, item) => {
-        return items.filter((v) => !v.noShow).length === items.length ? (item.span || (24 / items.length)) : (!item.noShow ? (24 / items.filter((v) => !v.noShow).length) : 0)
+    setSpan () {
+      return function(items, item, data) {
+        let show = this.getShow(data, item)
+        let itemsLength = items.filter((v) => this.getShow(data, v)).length
+        let RemainingNum = 24 - items.filter((v) => !this.getShow(data, v)).reduce((a, b) => a + b.span || 0, 0)
+        if (itemsLength === items.length ) {
+          return item.span ?? (RemainingNum / itemsLength)
+        } else {
+          return show ? (item.span ?? (RemainingNum / itemsLength)) : 0
+        }
       }
     },
     isTowLevel: () => {
@@ -102,11 +109,22 @@ export default {
         return val;
       };
     },
+    getShow() {
+      return function(data, val) {
+        if (_.isBoolean(val.isHidden)) {
+          return !val.isHidden;
+        } else if (_.isFunction(val.isHidden)) {
+          return !val.isHidden(data, val);
+        }
+        return true;
+      }
+    }
   },
   mounted() {
     // console.log(this.RowList);
   },
   methods: {
+
     addItemList(item, data) {
       // 获取新增数据结构
       let newObj = {};
@@ -115,10 +133,10 @@ export default {
           if (v2.value.includes(".")) {
             _.merge(
               newObj,
-              v2.value.split(".").reduceRight((obj, next) => ({ [next]: obj }), undefined)
+              v2.value.split(".").reduceRight((obj, next) => ({ [next]: obj }), v2.el === 'switch' ? true : undefined)
             );
           } else {
-            _.merge(newObj, { [v2.value]: undefined });
+            _.merge(newObj, { [v2.value]: v2.el === 'switch' ? true : undefined });
           }
         }
       }
