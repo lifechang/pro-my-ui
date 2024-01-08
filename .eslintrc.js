@@ -201,7 +201,7 @@ module.exports = {
     // 注释不能和代码写在同一行
     "no-inline-comments": 1,
     // 如果 else 里面只有 if，应该写成 else if
-    "no-lonely-if": 2,
+    // "no-lonely-if": 0,
     // 连续的空行不应该超过两行
     "no-multiple-empty-lines": 1,
     // 禁止使用 Object 构造函数
@@ -267,6 +267,9 @@ module.exports = {
     /* 以下是vue的规则 */
     "vue/no-parsing-error": 0,
     "vue/multi-word-component-names": 0,
-    "no-unused-expressions": ["error", { allowShortCircuit: true, allowTernary: true }],
+    "no-unused-expressions": [
+      "error",
+      { allowShortCircuit: true, allowTernary: true },
+    ],
   },
 };

@@ -1,457 +1,255 @@
 <template>
-  <div id="app">
-    <MyForm ref="myForm" :setFormData="setFormData" :setFormConfig="setFormConfig" :rules="setFormConfig.rules">
-      <template #[`list2.name`]="{ scope }">
-        <div>我是插槽{{ scope.data.data[scope.parentItem.value][scope.index][scope.data.item.value] }}</div>
-      </template>
-      <template #address="{ scope }">
-        <div>{{ scope.data[scope.item.value] }}707办公室1</div>
-      </template>
-    </MyForm>
+  <div class="ay_container">
+    <div class="ay_header">
+      {{ id ? "编辑" : "新增" }}商品
+      <a @click="$router.back()" href="javascript:;">
+        <el-button size="small" type="primary" plain icon="el-icon-back">返 回</el-button>
+      </a>
+    </div>
+    <div class="ay_main" style="padding: 20px">
+      <MyForm ref="myForm" :setFormData="setFormData" label-width="110px" :setFormConfig="setFormConfig" :rules="setFormConfig.rules">
+        <!-- <template #[`skus.sku_attrs`]="{ scope }">
+          <div v-for="(item, index) in scope.data.data['skus'][scope.index][
+              'sku_attrs'
+            ]" :key="index">
+            <el-input v-model="item.attr_key" placeholder="请输入"></el-input>
+            <el-input v-model="item.attr_value" placeholder="请输入"></el-input>
+          </div>
+        </template> -->
+      </MyForm>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
-  components: {},
   data() {
     return {
-      setFormData: {
-        region: '',
-        name: "",
-        name1: '',
-        comboDesc1: '',
-        time: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"],
-        list: [
-          {
-            name: "",
-            info: {
-              status: false,
-            },
-            // city: "",
-          },
-        ],
-        list2: [
-          {
-            name: "小明",
-            detail: {
-              info: {
-                phone: "",
-              },
-            },
-          },
-        ],
-        comboDesc: '',
-        isLink: true
-      },
+      id: "",
       setFormConfig: {
         gutter: 0,
         // cols: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12 },
         rules: {
-          name: [{ required: true, message: "请输入活动名称1", trigger: "blur" }],
+          title: [
+            { required: true, message: "请输入活动名称1", trigger: "blur" },
+          ],
         },
         formList: [
           [
             {
-              label: "活动名称：",
-              value: "name",
+              label: "标题",
+              value: "title",
               el: "input",
               props: {
-                rules: [{ required: true, message: "请输入活动名称2", trigger: "blur" }],
-              },
-            },
-          ],
-          [
-            {
-              label: "活动区域:",
-              value: "region",
-              el: "select",
-              isHidden: (aa) => {
-                return aa.name === ''
-              },
-              props: {
-                change: (a) => {
-                  console.log(a)
-                }
-              },
-              span: 6,
-              enum: [
-                {
-                  label: "区域一",
-                  value: "shanghai",
-                },
-                {
-                  label: "区域二",
-                  value: "beijing",
-                },
-              ],
-            },
-
-            {
-              label: "活动时间:",
-              value: "time",
-              el: "date-picker",
-              props: { type: "datetimerange", valueFormat: "yyyy-MM-dd HH:mm:ss" },
-            },
-            {
-              label: "1122：",
-              value: "name1",
-              span: 5,
-              el: "input",
-            },
-          ],
-          [
-            {
-              label: "参加人员:",
-              value: "list",
-              el: "towLevel",
-              multiple: true,
-              props: {
-                rules: [{ required: true, message: "请输入活动名称", trigger: "blur" }],
-              },
-              formList: [
-                [
-                  {
-                    label: "姓名:",
-                    value: "name",
-                    el: "input",
-                    props: {
-                      rules: [{ required: true, message: "请输入姓名", trigger: "blur" }],
-                    },
-                  },
-                  {
-                    label: "状态:",
-                    value: "info.status",
-                    el: "switch",
-                    props: {
-                      "active-text": "参加",
-                      "inactive-text": "未参加",
-                    },
-                  },
-                ],
-                [
-                  {
-                    label: "城市:",
-                    value: "city",
-                    el: "select",
-                    enum: () => {
-                      return new Promise((resolve) => {
-                        setTimeout(() => {
-                          resolve({
-                            data: [
-                              {
-                                name: "1111",
-                                key: "11",
-                              },
-                              {
-                                name: "222",
-                                key: "222",
-                              },
-                            ],
-                          });
-                        }, 3000);
-                      });
-                    },
-                    fieldNames: {
-                      label: "name",
-                      value: "key",
-                    },
-                  },
-                ],
-              ],
-            },
-          ],
-          [
-            {
-              label: '套餐描述1：',
-              value: 'comboDesc1',
-              el: 'radio-group',
-              enum: [
-                {
-                  label: "啊啊啊啊啊啊啊啊",
-                  value: "11",
-                },
-                {
-                  label: "ffffd",
-                  value: "112",
-                }
-              ],
-              props: {
-              }
-            }
-          ],
-          [
-            {
-              label: '套餐描述1：',
-              value: 'comboDesc2',
-              render: 'my-tree-select',
-              enum: [
-                {
-                  id: 1,
-                  label: "重庆",
-                  enum: [
-                    {
-                      id: 2,
-                      label: "渝北区",
-                    },
-                  ],
-                },
-                {
-                  id: 3,
-                  label: "北京",
-                  children: [
-                    { id: 4, label: "海淀区" },
-                    { id: 5, label: "朝阳区" },
-                  ],
-                },
-                {
-                  id: 6,
-                  label: "四川",
-                  children: [
-                    {
-                      id: 7,
-                      label: "成都",
-                      children: [{ id: "8", label: "成华区" }],
-                    },
-                  ],
-                },
-              ],
-              props: {
-                a: '1',
-                  props: {
-                    children: "children",
-                    label: "label",
-                  },
-              }
-            }
-          ],
-          [
-            {
-              label: '套餐描述1：',
-              value: 'comboDesc3',
-              el: 'cascader',
-              enum: [{
-          value: 'zhinan',
-          label: '指南',
-          children: [{
-            value: 'shejiyuanze',
-            label: '设计原则',
-            children: [{
-              value: 'yizhi',
-              label: '一致'
-            }, {
-              value: 'fankui',
-              label: '反馈'
-            }, {
-              value: 'xiaolv',
-              label: '效率'
-            }, {
-              value: 'kekong',
-              label: '可控'
-            }]
-          }, {
-            value: 'daohang',
-            label: '导航',
-            children: [{
-              value: 'cexiangdaohang',
-              label: '侧向导航'
-            }, {
-              value: 'dingbudaohang',
-              label: '顶部导航'
-            }]
-          }]
-        }, {
-          value: 'zujian',
-          label: '组件',
-          children: [{
-            value: 'basic',
-            label: 'Basic',
-            children: [{
-              value: 'layout',
-              label: 'Layout 布局'
-            }, {
-              value: 'color',
-              label: 'Color 色彩'
-            }, {
-              value: 'typography',
-              label: 'Typography 字体'
-            }, {
-              value: 'icon',
-              label: 'Icon 图标'
-            }, {
-              value: 'button',
-              label: 'Button 按钮'
-            }]
-          }, {
-            value: 'form',
-            label: 'Form',
-            children: [{
-              value: 'radio',
-              label: 'Radio 单选框'
-            }, {
-              value: 'checkbox',
-              label: 'Checkbox 多选框'
-            }, {
-              value: 'input',
-              label: 'Input 输入框'
-            }, {
-              value: 'input-number',
-              label: 'InputNumber 计数器'
-            }, {
-              value: 'select',
-              label: 'Select 选择器'
-            }, {
-              value: 'cascader',
-              label: 'Cascader 级联选择器'
-            }, {
-              value: 'switch',
-              label: 'Switch 开关'
-            }, {
-              value: 'slider',
-              label: 'Slider 滑块'
-            }, {
-              value: 'time-picker',
-              label: 'TimePicker 时间选择器'
-            }, {
-              value: 'date-picker',
-              label: 'DatePicker 日期选择器'
-            }, {
-              value: 'datetime-picker',
-              label: 'DateTimePicker 日期时间选择器'
-            }, {
-              value: 'upload',
-              label: 'Upload 上传'
-            }, {
-              value: 'rate',
-              label: 'Rate 评分'
-            }, {
-              value: 'form',
-              label: 'Form 表单'
-            }]
-          }, {
-            value: 'data',
-            label: 'Data',
-            children: [{
-              value: 'table',
-              label: 'Table 表格'
-            }, {
-              value: 'tag',
-              label: 'Tag 标签'
-            }, {
-              value: 'progress',
-              label: 'Progress 进度条'
-            }, {
-              value: 'tree',
-              label: 'Tree 树形控件'
-            }, {
-              value: 'pagination',
-              label: 'Pagination 分页'
-            }, {
-              value: 'badge',
-              label: 'Badge 标记'
-            }]
-          }, {
-            value: 'notice',
-            label: 'Notice',
-            children: [{
-              value: 'alert',
-              label: 'Alert 警告'
-            }, {
-              value: 'loading',
-              label: 'Loading 加载'
-            }, {
-              value: 'message',
-              label: 'Message 消息提示'
-            }, {
-              value: 'message-box',
-              label: 'MessageBox 弹框'
-            }, {
-              value: 'notification',
-              label: 'Notification 通知'
-            }]
-          }, {
-            value: 'navigation',
-            label: 'Navigation',
-            children: [{
-              value: 'menu',
-              label: 'NavMenu 导航菜单'
-            }, {
-              value: 'tabs',
-              label: 'Tabs 标签页'
-            }, {
-              value: 'breadcrumb',
-              label: 'Breadcrumb 面包屑'
-            }, {
-              value: 'dropdown',
-              label: 'Dropdown 下拉菜单'
-            }, {
-              value: 'steps',
-              label: 'Steps 步骤条'
-            }]
-          }, {
-            value: 'others',
-            label: 'Others',
-            children: [{
-              value: 'dialog',
-              label: 'Dialog 对话框'
-            }, {
-              value: 'tooltip',
-              label: 'Tooltip 文字提示'
-            }, {
-              value: 'popover',
-              label: 'Popover 弹出框'
-            }, {
-              value: 'card',
-              label: 'Card 卡片'
-            }, {
-              value: 'carousel',
-              label: 'Carousel 走马灯'
-            }, {
-              value: 'collapse',
-              label: 'Collapse 折叠面板'
-            }]
-          }]
-        }, {
-          value: 'ziyuan',
-          label: '资源',
-          children: [{
-            value: 'axure',
-            label: 'Axure Components'
-          }, {
-            value: 'sketch',
-            label: 'Sketch Templates'
-          }, {
-            value: 'jiaohu',
-            label: '组件交互文档'
-          }]
-        }],
-              props: {
-                a: '1',
-                  props: {
-                    children: "children",
-                    label: "label",
-                  },
-              }
-            }
-          ],
-          [
-            {
-              label: '套餐描述：',
-              value: 'comboDesc',
-              el: 'input',
-              props: {
-                type: 'textarea',
-                rows: '3',
                 rules: [
                   {
                     required: true,
-                    message: '请输入套餐描述',
-                    trigger: 'blur'
-                  }
-                ]
-              }
-            }
+                    message: "请输入标题",
+                    trigger: "blur",
+                  },
+                ],
+              },
+            },
+            // {
+            //   label: "副标题",
+            //   value: "sub_title",
+            //   el: "input",
+            //   props: {
+            //     rules: [
+            //       {
+            //         required: true,
+            //         message: "请输入副标题",
+            //         trigger: "blur",
+            //       },
+            //     ],
+            //   },
+            // },
+          ],
+          // [
+          //   {
+          //     label: "商品详情图",
+          //     value: "sub_title",
+          //     el: "input",
+          //     props: {},
+          //   },
+          // ],
+          // [
+          //   {
+          //     label: "商品描述",
+          //     value: "sub_title",
+          //     el: "input",
+          //     props: {},
+          //   },
+          // ],
+          // [
+          //   {
+          //     label: "商品类目:",
+          //     value: "cats",
+          //     el: "select",
+          //     span: 8,
+          //     enum: [
+          //       {
+          //         label: "区域一",
+          //         value: "shanghai",
+          //       },
+          //       {
+          //         label: "区域二",
+          //         value: "beijing",
+          //       },
+          //     ],
+          //   },
+          // ],
+          // [
+          //   {
+          //     label: "规格:",
+          //     value: "attrs",
+          //     el: "towLevel",
+          //     multiple: true,
+          //     formList: [
+          //       [
+          //         {
+          //           label: "属性键key:",
+          //           value: "attr_key",
+          //           el: "input",
+          //           props: {
+          //             rules: [
+          //               {
+          //                 required: true,
+          //                 message: "请输入姓名",
+          //                 trigger: "blur",
+          //               },
+          //             ],
+          //           },
+          //         },
+          //         {
+          //           label: "属性值value:",
+          //           value: "attr_value",
+          //           el: "input",
+          //           props: {
+          //             rules: [
+          //               {
+          //                 required: true,
+          //                 message: "请输入姓名",
+          //                 trigger: "blur",
+          //               },
+          //             ],
+          //           },
+          //         },
+          //       ],
+          //     ],
+          //   },
+          // ],
+          // [
+          //   {
+          //     label: "运费模版:",
+          //     value: "express_info.template_id",
+          //     el: "select",
+          //     span: 8,
+          //     enum: [
+          //       {
+          //         label: "区域一",
+          //         value: "shanghai",
+          //       },
+          //       {
+          //         label: "区域二",
+          //         value: "beijing",
+          //       },
+          //     ],
+          //   },
+          // ],
+          [
+            {
+              label: "skus:",
+              value: "skus",
+              el: "towLevel",
+              multiple: true,
+              formList: [
+                [
+                  {
+                    label: "售卖价格:",
+                    value: "sale_price",
+                    el: "input",
+                    props: {
+                      rules: [
+                        {
+                          required: true,
+                          message: "请输入姓名",
+                          trigger: "blur",
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    label: "售卖数量:",
+                    value: "stock_num",
+                    el: "input",
+                    props: {
+                      rules: [
+                        {
+                          required: true,
+                          message: "请输入姓名",
+                          trigger: "blur",
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    label: "sku编码:",
+                    value: "sku_code",
+                    el: "input",
+                    props: {
+                      rules: [
+                        {
+                          required: true,
+                          message: "请输入姓名",
+                          trigger: "blur",
+                        },
+                      ],
+                    },
+                  },
+                ],
+                [
+                  {
+                    label: "sku_attrs:",
+                    value: "sku_attrs",
+                    el: "towLevel",
+                    multiple: true,
+                    formList: [
+                      [
+                        {
+                          label: "售卖价格:",
+                          value: "attr_key",
+                          el: "input",
+                          props: {
+                            rules: [
+                              {
+                                required: true,
+                                message: "请输入姓名",
+                                trigger: "blur",
+                              },
+                            ],
+                          },
+                        },
+                        {
+                          label: "售卖数量:",
+                          value: "attr_value",
+                          el: "input",
+                          props: {
+                            rules: [
+                              {
+                                required: true,
+                                message: "请输入姓名",
+                                trigger: "blur",
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    ],
+                  },
+                ],
+              ],
+            },
           ],
         ],
         formBtn: [
@@ -459,7 +257,6 @@ export default {
             name: "保存",
             type: "primary",
             callBack: async (data) => {
-              let res = await this.$refs.myForm.validate();
               console.log(data);
             },
           },
@@ -468,24 +265,66 @@ export default {
             type: "info",
             callBack: async (data) => {
               await this.$refs.myForm.resetFields();
-              console.log(this.$refs.myForm.RefForm());
             },
+          },
+        ],
+      },
+      setFormData: {
+        title:
+          "任天堂",
+        // sub_title: "随时随地，一起趣玩。",
+        // head_imgs: [
+        //   "https://mmecimage.cn/p/wx37f38d59298839c3/HJE9eJaEc5bJk-eaArVdILSB7MMaHgdK2-JIn51nMQ",
+        // ],
+        // desc_info: {
+        //   imgs: [
+        //     "https://mmecimage.cn/p/wx37f38d59298839c3/HJE9eJaEc5bJk-eaArVdILSB7MMaHgdK2-JIn51nMQ",
+        //   ],
+        //   desc: "物美价廉",
+        // },
+        // cats: [
+        //   {
+        //     cat_id: "6033",
+        //   },
+        //   {
+        //     cat_id: "6057",
+        //   },
+        //   {
+        //     cat_id: "6091",
+        //   },
+        // ],
+        // attrs: [
+        //   {
+        //     attr_key: "商品毛重",
+        //     attr_value: "380g",
+        //   },
+        //   {
+        //     attr_key: "商品产地",
+        //     attr_value: "中国大陆",
+        //   },
+        // ],
+        // express_info: {
+        //   template_id: "47428464001",
+        // },
+        skus: [
+          {
+            sale_price: 1,
+            stock_num: 222,
+            sku_code: '111',
+            sku_attrs: [
+              {
+                attr_key: "选择颜色",
+                attr_value: "红蓝主机",
+              },
+              {
+                attr_key: "选择套装",
+                attr_value: "主机+保护套",
+              },
+            ],
           },
         ],
       },
     };
   },
-  async mounted() {
-    let res = await new Promise((resolve) => {
-      resolve({
-        data: [
-          { name: "上海", key: 1 },
-          { name: "北京", key: 2 },
-        ],
-      });
-    });
-    // this.setFormConfig.formList[2][0].formList[1][0].enum = res.data;
-  },
-  methods: {},
 };
 </script>
