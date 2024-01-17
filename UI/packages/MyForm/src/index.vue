@@ -8,6 +8,7 @@
     }"
     :model="formData"
   >
+      {{ Object.keys($scopedSlots) }}
     <Row v-bind="$attrs" :RowList="formConfig" :RowData="formData">
       <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
         <slot :name="slot" :scope="scope"></slot>
@@ -82,7 +83,7 @@ export default {
     setDataList() {
       for (let level of this.setFormConfig.formList) {
         for (let level2 of level) {
-          if (level2.el === "towLevel" && !this.setFormData[level2.value]?.length) {
+          if (level2.formList && !this.setFormData[level2.value]?.length) {
             let newObj = {};
             for (let v of level2.formList) {
               for (let v2 of v) {
