@@ -97,7 +97,6 @@ export default {
   },
   methods: {
     dealColumn(row, key, parentKey, type, val) {
-      // console.log(this.CurProps, '11')
       let value = this.CurProps.split('.').reduce((acc, cur) => acc && acc[cur], row);
       if (type === 'get') {
         return value

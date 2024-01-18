@@ -12,8 +12,7 @@
           <el-input v-model="scope.data.data.skus[scope.index].sale_price" placeholder=""></el-input>
         </template>
         <template #[`skus.sku_attrs.attr_value`]="{scope}">
-          {{ scope.data.data.data.skus[scope.index].sku_attrs }}2222
-          <!-- <el-input v-model="scope.data.data.skus[scope.index].sale_price" placeholder=""></el-input> -->
+          <el-input :value="getData(scope.data.data.CurProps, scope.data.data.data, 'attr_value')" @input="(e) => setData(e, scope.data.data.CurProps, scope.data.data.data, 'attr_value')"></el-input>
         </template>
       </MyForm>
     </div>
@@ -256,7 +255,7 @@ export default {
           {
             name: "取消",
             type: "info",
-            callBack: async (data) => {
+            callBack: async () => {
               await this.$refs.myForm.resetFields();
             },
           },
@@ -319,5 +318,25 @@ export default {
       },
     };
   },
+  computed: {
+    _searchParam: {
+      get() {
+        return this.dealColumn(this.data, this.column.value, this.column.parentValue, "get");
+      },
+      set(val) {
+        this.dealColumn(this.data, this.column.value, this.column.parentValue, "set", val);
+      },
+    }
+  },
+  methods: {
+    getData(str, data, key) {
+      let value = str.split('.').reduce((acc, cur) => acc && acc[cur], data);
+      return value[key]
+    },
+    setData(e, str, data, key) {
+      let value = str.split('.').reduce((acc, cur) => acc && acc[cur], data);
+      value[key] = e
+    }
+  }
 };
 </script>

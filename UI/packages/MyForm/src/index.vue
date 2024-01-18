@@ -8,7 +8,6 @@
     }"
     :model="formData"
   >
-      {{ Object.keys($scopedSlots) }}
     <Row v-bind="$attrs" :RowList="formConfig" :RowData="formData">
       <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
         <slot :name="slot" :scope="scope"></slot>
