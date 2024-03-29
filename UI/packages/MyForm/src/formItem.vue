@@ -97,7 +97,6 @@ export default {
   },
   methods: {
     dealColumn(row, key, parentKey, type, val) {
-      // console.log(this.CurProps, '11')
       let value = this.CurProps.split('.').reduce((acc, cur) => acc && acc[cur], row);
       if (type === 'get') {
         return value
@@ -111,22 +110,6 @@ export default {
           this.$set(row, key, val)
         }
       }
-      // if (!key.includes(".")) {
-      //   if (type === "get") {
-      //     return data[key] ?? "";
-      //   } else {
-      //     this.$set(data, key, val);
-      //   }
-      // } else {
-      //   const keys = key.split(".");
-
-      //   if (type === "get") {
-      //     return keys.reduce((pre, cur) => pre?.[cur], data);
-      //   } else {
-      //     const newObject = keys.reduceRight((obj, next) => ({ [next]: obj }), val);
-      //     Object.assign(data, newObject);
-      //   }
-      // }
     }
   },
 };

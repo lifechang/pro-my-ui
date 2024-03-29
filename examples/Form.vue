@@ -8,14 +8,12 @@
     </div>
     <div class="ay_main" style="padding: 20px">
       <MyForm ref="myForm" :setFormData="setFormData" label-width="110px" :setFormConfig="setFormConfig" :rules="setFormConfig.rules">
-        <!-- <template #[`skus.sku_attrs`]="{ scope }">
-          <div v-for="(item, index) in scope.data.data['skus'][scope.index][
-              'sku_attrs'
-            ]" :key="index">
-            <el-input v-model="item.attr_key" placeholder="请输入"></el-input>
-            <el-input v-model="item.attr_value" placeholder="请输入"></el-input>
-          </div>
-        </template> -->
+        <template #[`skus.sale_price`]="{ scope }">
+          <el-input v-model="scope.data.data.skus[scope.index].sale_price" placeholder=""></el-input>
+        </template>
+        <template #[`skus.sku_attrs.attr_value`]="{scope}">
+          <el-input :value="getData(scope.data.data.CurProps, scope.data.data.data, 'attr_value')" @input="(e) => setData(e, scope.data.data.CurProps, scope.data.data.data, 'attr_value')"></el-input>
+        </template>
       </MyForm>
     </div>
   </div>
@@ -168,16 +166,16 @@ export default {
                   {
                     label: "售卖价格:",
                     value: "sale_price",
-                    el: "input",
-                    props: {
-                      rules: [
-                        {
-                          required: true,
-                          message: "请输入姓名",
-                          trigger: "blur",
-                        },
-                      ],
-                    },
+                    el: "custom",
+                    // props: {
+                    //   rules: [
+                    //     {
+                    //       required: true,
+                    //       message: "请输入姓名",
+                    //       trigger: "blur",
+                    //     },
+                    //   ],
+                    // },
                   },
                   {
                     label: "售卖数量:",
@@ -220,6 +218,9 @@ export default {
                           label: "售卖价格:",
                           value: "attr_key",
                           el: "input",
+                          isHidden: () => {
+                            return false
+                          },
                           props: {
                             rules: [
                               {
@@ -233,16 +234,7 @@ export default {
                         {
                           label: "售卖数量:",
                           value: "attr_value",
-                          el: "input",
-                          props: {
-                            rules: [
-                              {
-                                required: true,
-                                message: "请输入姓名",
-                                trigger: "blur",
-                              },
-                            ],
-                          },
+                          el: "custom",
                         },
                       ],
                     ],
@@ -263,7 +255,7 @@ export default {
           {
             name: "取消",
             type: "info",
-            callBack: async (data) => {
+            callBack: async () => {
               await this.$refs.myForm.resetFields();
             },
           },
@@ -326,5 +318,25 @@ export default {
       },
     };
   },
+  computed: {
+    _searchParam: {
+      get() {
+        return this.dealColumn(this.data, this.column.value, this.column.parentValue, "get");
+      },
+      set(val) {
+        this.dealColumn(this.data, this.column.value, this.column.parentValue, "set", val);
+      },
+    }
+  },
+  methods: {
+    getData(str, data, key) {
+      let value = str.split('.').reduce((acc, cur) => acc && acc[cur], data);
+      return value[key]
+    },
+    setData(e, str, data, key) {
+      let value = str.split('.').reduce((acc, cur) => acc && acc[cur], data);
+      value[key] = e
+    }
+  }
 };
 </script>

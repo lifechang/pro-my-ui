@@ -82,7 +82,7 @@ export default {
     setDataList() {
       for (let level of this.setFormConfig.formList) {
         for (let level2 of level) {
-          if (level2.el === "towLevel" && !this.setFormData[level2.value]?.length) {
+          if (level2.formList && !this.setFormData[level2.value]?.length) {
             let newObj = {};
             for (let v of level2.formList) {
               for (let v2 of v) {
