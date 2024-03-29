@@ -278,20 +278,20 @@ export default {
           this.initParam,
           this.pagination ? this.pageParam : {}
         );
-        let { data } = await this.requestApi({
+        let res = await this.requestApi({
           ...this.searchInitParam,
           ...this.totalParam,
         });
         if (this.dataCallback) {
-          data = this.dataCallback(data);
+          res.data = this.dataCallback(res.data);
         }
         if (this.curProps) {
-          this.tableData = this.curProps.split('.').reduce((acc, cur) => acc && acc[cur], data);
+          this.tableData = this.curProps.split('.').reduce((acc, cur) => acc && acc[cur], res);
         } else {
-          this.tableData = this.pagination ? data.list : data;
+          this.tableData = this.pagination ? res.data.list : res.data;
         }
         // 解构后台返回的分页数据 (如果有分页更新分页信息)
-        const { pageNum, pageSize, total } = data;
+        const { pageNum, pageSize, total } = res.data;
 
         this.pagination &&
           this.updatePageable({
