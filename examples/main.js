@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from "./Form.vue";
+import App from "./Table.vue";
 
 import {
   Button,
@@ -24,7 +24,7 @@ import {
   RadioGroup,
   RadioButton,
   Tree,
-  Cascader
+  Cascader,
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(Button);
@@ -50,7 +50,6 @@ Vue.use(Dialog);
 Vue.use(Tree);
 Vue.use(Cascader);
 Vue.use(Empty);
-
 
 import "../UI/css/button.scss";
 import MyTable from "../UI/packages/MyTable";

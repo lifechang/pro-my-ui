@@ -1,76 +1,39 @@
 <template>
   <div class="table-box">
     <!-- 查询表单 card -->
-    <SearchForm
-      :search="search"
-      :reset="reset"
-      :columns="searchColumns"
-      :search-param="searchParam"
-      :search-col="searchCol"
-      v-show="isShowSearch"
-    >
+    <SearchForm :search="search" :reset="reset" :columns="searchColumns" :search-param="searchParam" :search-col="searchCol" v-show="isShowSearch">
       <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
         <slot :name="slot" :row="scope.row" :data="scope.searchParam"></slot>
       </template>
     </SearchForm>
     <!-- 表格内容 card -->
-    <div
-      :class="{
+    <div :class="{
         'my-card':
           $attrs['no-card'] === '' || $attrs['noCard'] === '' ? '' : 'my-card',
-      }"
-      class="table-main no-card"
-    >
+      }" class="table-main no-card">
       <!-- 表格头部 操作按钮 -->
       <div class="table-header">
         <div class="header-button-lf">
-          <slot
-            name="tableHeader"
-            :selectedListIds="selectedListIds"
-            :selectedList="selectedList"
-          />
+          <slot name="tableHeader" :selectedListIds="selectedListIds" :selectedList="selectedList" />
         </div>
         <div v-if="toolButton" class="header-button-ri">
           <slot name="toolButton">
-            <el-button
-              v-if="showToolButton('refresh')"
-              icon="el-icon-refresh"
-              circle
-              @click="getTableList"
-            />
-            <el-button
-              v-if="showToolButton('search') && searchColumns?.length"
-              icon="el-icon-search"
-              circle
-              @click="isShowSearch = !isShowSearch"
-            />
+            <el-button v-if="showToolButton('refresh')" icon="el-icon-refresh" circle @click="getTableList" />
+            <el-button v-if="showToolButton('search') && searchColumns?.length" icon="el-icon-search" circle @click="isShowSearch = !isShowSearch" />
           </slot>
         </div>
       </div>
       <!-- 表格主体 -->
       <div class="table-container">
-        <el-table
-          ref="tableRef"
-          v-bind="$attrs"
-          :data="processTableData"
-          :border="border"
-          :row-key="rowKey"
-          @selection-change="selectionChange"
-        >
+        <el-table ref="tableRef" v-bind="$attrs" :data="processTableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
           <!-- 默认插槽 -->
           <slot></slot>
           <template v-for="(item, index) in columns">
             <!-- selection || index || expand -->
-            <el-table-column
-              v-bind="item"
-              :align="item.align || 'center'"
-              :key="`${index}`"
-              :reserve-selection="item.type == 'selection'"
-              v-if="
+            <el-table-column v-bind="item" :align="item.align || 'center'" :key="`${index}`" :reserve-selection="item.type == 'selection'" v-if="
                 item.type &&
                 ['selection', 'index', 'expand'].includes(item.type)
-              "
-            >
+              ">
               <template #default="scope" v-if="item.type == 'expand'">
                 <component :is="item.render" v-bind="scope" v-if="item.render">
                 </component>
@@ -79,15 +42,8 @@
             </el-table-column>
 
             <!-- other -->
-            <TableColumn
-              v-if="!item.type && item.prop && item.isShow"
-              :key="`${index}`"
-              :column="item"
-            >
-              <template
-                v-for="slot in Object.keys($scopedSlots)"
-                #[slot]="scope"
-              >
+            <TableColumn v-if="!item.type && item.prop && item.isShow" :key="`${index}`" :column="item">
+              <template v-for="slot in Object.keys($scopedSlots)" #[slot]="scope">
                 <slot :name="slot" :row="scope.row"></slot>
               </template>
             </TableColumn>
@@ -108,17 +64,7 @@
       </div>
       <!-- 分页组件 -->
       <slot name="pagination">
-        <el-pagination
-          v-if="pagination"
-          :background="true"
-          :current-page="pageable.pageNum"
-          :page-size="pageable.pageSize"
-          :page-sizes="[10, 25, 50, 100]"
-          :total="pageable.total"
-          layout="total, sizes, prev, pager, next, jumper"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        ></el-pagination>
+        <el-pagination v-if="pagination" :background="true" :current-page="pageable.pageNum" :page-size="pageable.pageSize" :page-sizes="[10, 25, 50, 100]" :total="pageable.total" layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"></el-pagination>
       </slot>
     </div>
   </div>
@@ -187,6 +133,10 @@ export default {
     // 表格 api 请求错误监听 ==> 非必传
     requestError: {
       type: Function,
+    },
+    // 取请求数据结构
+    curProps: {
+      type: String
     }
   },
   computed: {
@@ -335,14 +285,19 @@ export default {
         if (this.dataCallback) {
           data = this.dataCallback(data);
         }
-        this.tableData = this.pagination ? data.list : data;
+        if (this.curProps) {
+          this.tableData = this.curProps.split('.').reduce((acc, cur) => acc && acc[cur], data);
+        } else {
+          this.tableData = this.pagination ? data.list : data;
+        }
         // 解构后台返回的分页数据 (如果有分页更新分页信息)
         const { pageNum, pageSize, total } = data;
+
         this.pagination &&
           this.updatePageable({
             pageNum: pageNum || this.pageable.pageNum,
             pageSize: pageSize || this.pageable.pageSize,
-            total,
+            total: total || this.tableData.length,
           });
       } catch (error) {
         this.requestError && this.requestError(error)

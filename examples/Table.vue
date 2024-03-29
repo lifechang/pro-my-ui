@@ -11,7 +11,7 @@
         <div style="min-width: 180px">
           <el-button type="primary" @click="$refs.ShowDialog.show = true">打开</el-button>
         </div>
-        <MyTable :columns="columns" :requestApi="getTableList" :init-param="initParam"  :dataCallback="dataCallback">
+        <MyTable :columns="columns" :curProps="`cc.list`" :requestApi="getTableList" :init-param="initParam">
           <!-- 表格 header 按钮 -->
           <template #tableHeader>
             <el-button type="primary">新增用户</el-button>
@@ -53,9 +53,12 @@ export default {
           label: "姓名",
           search: {
             el: "input",
-            props: {change: (val) => {
-              console.log(val);
-            }} },
+            props: {
+              change: (val) => {
+                console.log(val);
+              }
+            }
+          },
           render: (h, scope) => {
             let style = {
               color: "green",
@@ -80,9 +83,11 @@ export default {
           search: {
             el: "select",
             defaultValue: 0,
-            props: { filterable: true, change: (val) => {
-              console.log(val);
-            } },
+            props: {
+              filterable: true, change: (val) => {
+                console.log(val);
+              }
+            },
           },
           fieldNames: { label: "genderLabel", value: "genderValue" },
         },
@@ -90,7 +95,8 @@ export default {
           // 多级 prop
           prop: "user.detail.age",
           label: "年龄",
-          search: { el: "custom",
+          search: {
+            el: "custom",
             defaultValue: false,
           },
         },
@@ -149,171 +155,173 @@ export default {
         setTimeout(function () {
           resolve({
             data: {
-              list: [
-                {
-                  id: '1',
-                  date: "2016-05-03",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 18,
+              cc: {
+                list: [
+                  {
+                    id: '1',
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 18,
+                      },
                     },
                   },
-                },
-                {
-                  id: '2',
-                  date: "2016-05-02",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 1,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 19,
+                  {
+                    id: '2',
+                    date: "2016-05-02",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 1,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 19,
+                      },
                     },
                   },
-                },
-                {
-                  id: '3',
-                  date: "2016-05-04",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 20,
+                  {
+                    id: '3',
+                    date: "2016-05-04",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 20,
+                      },
                     },
                   },
-                },
-                {
-                  id: '4',
-                  date: "2016-05-03",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 18,
+                  {
+                    id: '4',
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 18,
+                      },
                     },
                   },
-                },
-                {
-                  id: '5',
-                  date: "2016-05-02",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 1,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 19,
+                  {
+                    id: '5',
+                    date: "2016-05-02",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 1,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 19,
+                      },
                     },
                   },
-                },
-                {
-                  id: '6',
-                  date: "2016-05-04",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 20,
+                  {
+                    id: '6',
+                    date: "2016-05-04",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 20,
+                      },
                     },
                   },
-                },
-                {
-                  id: '7',
-                  date: "2016-05-03",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 18,
+                  {
+                    id: '7',
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 18,
+                      },
                     },
                   },
-                },
-                {
-                  id: '8',
-                  date: "2016-05-02",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 1,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 19,
+                  {
+                    id: '8',
+                    date: "2016-05-02",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 1,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 19,
+                      },
                     },
                   },
-                },
-                {
-                  id: '9',
-                  date: "2016-05-03",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 0,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 18,
+                  {
+                    id: '9',
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 0,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 18,
+                      },
                     },
                   },
-                },
-                {
-                  id: '10',
-                  date: "2016-05-02",
-                  name: "王小虎",
-                  gender: 1,
-                  province: "上海",
-                  city: "普陀区",
-                  address: "上海市普陀区金沙江路 1518 弄",
-                  status: 1,
-                  createTime: "2023-05-12 12:22:07",
-                  user: {
-                    detail: {
-                      age: 19,
+                  {
+                    id: '10',
+                    date: "2016-05-02",
+                    name: "王小虎",
+                    gender: 1,
+                    province: "上海",
+                    city: "普陀区",
+                    address: "上海市普陀区金沙江路 1518 弄",
+                    status: 1,
+                    createTime: "2023-05-12 12:22:07",
+                    user: {
+                      detail: {
+                        age: 19,
+                      },
                     },
-                  },
-                }
-              ],
-              pageNum: 1,
-              pageSize: 10,
-              total: 100,
+                  }
+                ],
+              },
+              // pageNum: 1,
+              // pageSize: 10,
+              // total: 100,
             },
           });
         }, 1000);
